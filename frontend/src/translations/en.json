@@ -1,0 +1,42 @@
+{
+  "global": {
+    "languageTitle": "English",
+    "mainMenu": "Main Menu",
+    "language": "Language",
+    "logout": "Logout"
+  },
+  "login": {
+    "moduleTitle": "Login",
+    "login": "Login",
+    "userName": "User Name",
+    "email": "Email",
+    "password": "Password",
+    "togglePasswordVisibility": "toggle password visibility",
+    "dontHaveAccount": "Don't have account?",
+    "signup": "Sign Up"
+  },
+  "signup": {
+    "moduleTitle": "Sign Up",
+    "signup": "Sign Up",
+    "userName": "User Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Retype password",
+    "togglePasswordVisibility": "toggle password visibility",
+    "alreadyHaveAccount": "Already have account?",
+    "login": "Login",
+    "accountFor": "Account for",
+    "createdSuccessfully": "created successfully",
+    "pleaseLogin": "Please login"
+  },
+  "mainMenu": {
+    "moduleTitle": "Main Menu"
+  },
+  "user": {
+    "moduleTitle": "User"
+  },
+  "noMatchPage": {
+    "moduleTitle": "404",
+    "message": "Sorry, the page you are looking for does not exist."
+  }
+}

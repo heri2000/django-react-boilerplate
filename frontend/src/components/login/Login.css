@@ -1,0 +1,24 @@
+.LoginFormContainer {
+  margin-top: 80px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  height: 300px;
+}
+
+.LoginFormItemContainer {
+  margin-bottom: 1em;
+}
+
+.PasswordLabel {
+  margin-top: -0.5em;
+  margin-left: 1em;
+}
+
+.LoginButton {
+  float: left;
+}
+
+.SignupText {
+  float: right;
+  margin-top: 6px;
+}

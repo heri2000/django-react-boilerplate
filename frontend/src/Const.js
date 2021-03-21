@@ -1,0 +1,3 @@
+export const APP_TITLE = "Accounts";
+export const APP_TITLE_SEPARATOR = " | ";
+export const APP_DEFAULT_LANG = "en";

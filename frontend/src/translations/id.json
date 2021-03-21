@@ -1,0 +1,42 @@
+{
+  "global": {
+    "languageTitle": "Bahasa Indonesia",
+    "mainMenu": "Menu Utama",
+    "language": "Bahasa",
+    "logout": "Keluar"
+  },
+  "login": {
+    "moduleTitle": "Login",
+    "login": "Masuk",
+    "userName": "Nama User",
+    "email": "Email",
+    "password": "Password",
+    "togglePasswordVisibility": "tampilkan/sembunyikan password",
+    "dontHaveAccount": "Belum memiliki akun?",
+    "signup": "Daftar"
+  },
+  "signup": {
+    "moduleTitle": "Daftar",
+    "signup": "Daftar",
+    "userName": "Nama User",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Ketik ulang password",
+    "togglePasswordVisibility": "tampilkan/sembunyikan password",
+    "alreadyHaveAccount": "Sudah memiliki akun?",
+    "login": "Login",
+    "accountFor": "Akun",
+    "createdSuccessfully": "berhasil dibuat",
+    "pleaseLogin": "Silakan login"
+  },
+  "mainMenu": {
+    "moduleTitle": "Menu Utama"
+  },
+  "user": {
+    "moduleTitle": "Pengguna"
+  },
+  "noMatchPage": {
+    "moduleTitle": "404",
+    "message": "Maaf, halaman yang Anda cari tidak ada."
+  }
+}
