@@ -41,7 +41,7 @@ import './Login.css';
 class Login extends React.Component {
   constructor(props) {
     super(props);
-  
+
     this.state = {
       username: "",
       password: "",
@@ -51,15 +51,12 @@ class Login extends React.Component {
     this.handleClickShowPassword = () => {
       this.setState({ showPassword: !this.state.showPassword });
     };
-    this.handleMouseDownPassword = (event) => {
-      event.preventDefault();
-    };
   }
-  
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
-  
+
   onLoginClick = () => {
     const userData = {
       username: this.state.username,
@@ -74,11 +71,11 @@ class Login extends React.Component {
   render() {
     let translation = H_GetTranslation();
     document.title = translation.login.moduleTitle + APP_TITLE_SEPARATOR + APP_TITLE;
-    
+
     let lang = H_GetLangFromUrl();
     if (lang === "") lang = APP_DEFAULT_LANG;
     const linkToSignup = "/" + lang + "/signup";
-    
+
     return (
       <AppContainer>
         <Container className="LoginFormContainer" maxWidth="xs">
@@ -113,12 +110,11 @@ class Login extends React.Component {
                     <IconButton
                       aria-label={translation.login.togglePasswordVisibility}
                       onClick={this.handleClickShowPassword}
-                      onMouseDown={this.handleMouseDownPassword}
                       edge="end"
                     >
                       {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
-                  </InputAdornment>                
+                  </InputAdornment>
                 }
               />
             </Container>

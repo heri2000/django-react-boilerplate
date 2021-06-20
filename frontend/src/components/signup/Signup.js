@@ -49,9 +49,6 @@ class Signup extends React.Component {
     this.handleClickShowPassword = () => {
       this.setState({ showPassword: !this.state.showPassword });
     };
-    this.handleMouseDownPassword = (event) => {
-      event.preventDefault();
-    };
   }
 
   onChange = e => {
@@ -108,7 +105,6 @@ class Signup extends React.Component {
                     <IconButton
                       aria-label={translation.signup.togglePasswordVisibility}
                       onClick={this.handleClickShowPassword}
-                      onMouseDown={this.handleMouseDownPassword}
                       edge="end"
                     >
                       {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
