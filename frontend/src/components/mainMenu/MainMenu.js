@@ -22,10 +22,13 @@ export default class MainMenu extends React.Component {
     let lang = H_GetLangFromUrl();
     if (lang === "") lang = APP_DEFAULT_LANG;
     const linkToNotes = "/" + lang + "/notes";
+    const linkToUser = "/" + lang + "/user";
     return (
-      <AppContainer>
+      <AppContainer title={translation.mainMenu.moduleTitle}>
         <Container maxWidth="sm">
           <Link to={linkToNotes} target="_blank">Notes</Link>
+          <br />
+          <Link to={linkToUser} target="_blank">{translation.user.moduleTitle}</Link>
         </Container>
       </AppContainer>
     );

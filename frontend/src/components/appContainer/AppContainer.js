@@ -30,6 +30,10 @@ class AppContainer extends React.Component {
   constructor(props) {
     super(props);
 
+    AppContainer.defaultProps = {
+      title: "",
+    };
+
     this.state = {
       showLanguageSelectionDialog: false,
       appHeaderHeight : 34,
@@ -87,7 +91,7 @@ class AppContainer extends React.Component {
             <MainMenuButton />
           </div>
           <div className="AppHeaderItemCenter">
-            <AppTitle />
+            <AppTitle title={this.props.title} />
           </div>
           <div className="AppHeaderItemRight">
             <LanguageAndLogout
@@ -127,18 +131,9 @@ function MainMenuButton() {
   );
 }
 
-function AppTitle() {
-  let translation = H_GetTranslation();
+function AppTitle(props) {
   return(
-    <div className="AppTitle">
-      <Switch>
-        <Route path="/" exact />
-        <Route path="/:lang" exact />
-        <Route path="/:lang/login" exact />
-        <Route path="/:lang/mainmenu"> {translation.mainMenu.moduleTitle} </Route>
-        <Route path="/:lang/user"> {translation.user.moduleTitle} </Route>
-      </Switch>
-    </div>
+    <div className="AppTitle">{props.title}</div>
   );
 }
 

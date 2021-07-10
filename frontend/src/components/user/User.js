@@ -14,7 +14,7 @@ export default class User extends React.Component {
     let translation = H_GetTranslation();
     document.title = translation.user.moduleTitle + APP_TITLE_SEPARATOR + APP_TITLE;
     return (
-      <AppContainer>
+      <AppContainer title={translation.user.moduleTitle}>
         <div className="User">
           {translation.user.moduleTitle}
         </div>

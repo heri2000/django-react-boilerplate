@@ -25,7 +25,7 @@ SECRET_KEY = 'y&4gz+tkeliq(k)t!gbeh2j=(vjkkgw7cuc5e6dd3r+**debz8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -73,7 +73,7 @@ REST_FRAMEWORK = {
 # configure Djoser
 DJOSER = {
     "USER_ID_FIELD": "username",
-    "LOGIN_FIELD": "email",
+    "LOGIN_FIELD": "username",
     "SEND_ACTIVATION_EMAIL": True,
     "ACTIVATION_URL": "activate/{uid}/{token}",
     'SERIALIZERS': {
