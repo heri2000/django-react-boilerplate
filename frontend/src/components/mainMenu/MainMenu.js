@@ -21,8 +21,10 @@ export default class MainMenu extends React.Component {
     document.title = translation.mainMenu.moduleTitle + APP_TITLE_SEPARATOR + APP_TITLE;
     let lang = H_GetLangFromUrl();
     if (lang === "") lang = APP_DEFAULT_LANG;
+
     const linkToNotes = "/" + lang + "/notes";
     const linkToUser = "/" + lang + "/user";
+    
     return (
       <AppContainer title={translation.mainMenu.moduleTitle}>
         <Container maxWidth="sm">

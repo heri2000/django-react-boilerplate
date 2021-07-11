@@ -10,7 +10,7 @@ const createRootReducer = history =>
     router: connectRouter(history),
     createUser: signupReducer,
     auth: loginReducer,
-    notes: notesReducer
+    notes: notesReducer,
   });
 
 export default createRootReducer;
