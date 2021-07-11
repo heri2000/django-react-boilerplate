@@ -74,7 +74,7 @@ REST_FRAMEWORK = {
 DJOSER = {
     "USER_ID_FIELD": "username",
     "LOGIN_FIELD": "username",
-    "SEND_ACTIVATION_EMAIL": True,
+    "SEND_ACTIVATION_EMAIL": False,
     "ACTIVATION_URL": "activate/{uid}/{token}",
     'SERIALIZERS': {
         'token_create': 'apps.userAccounts.serializers.CustomTokenCreateSerializer',
