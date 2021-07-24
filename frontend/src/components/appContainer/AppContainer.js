@@ -13,7 +13,7 @@ import { connect } from "react-redux";
 
 import {
   APP_DEFAULT_LANG,
-} from "../../Const";
+} from "../../utils/Common";
 import {
   H_GetLangFromUrl,
   H_GetTranslation,

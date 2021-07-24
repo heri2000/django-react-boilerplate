@@ -3,10 +3,7 @@ import {
   Container,
 } from "@material-ui/core";
 
-import {
-  APP_TITLE,
-  APP_TITLE_SEPARATOR,
-} from "../../Const";
+import { getTabTitle } from "../../utils/Common";
 import { H_GetTranslation } from "../../libs/Libs";
 import AppContainer from "../appContainer/AppContainer";
 
@@ -15,7 +12,7 @@ import './NoMatchPage.css';
 export default class NoMatchPage extends React.Component {
   render() {
     let translation = H_GetTranslation();
-    document.title = translation.noMatchPage.moduleTitle + APP_TITLE_SEPARATOR + APP_TITLE;
+    document.title = getTabTitle(translation.noMatchPage.moduleTitle);
     return (
       <AppContainer>
         <Container className="NoMatchPage" maxWidth="sm">

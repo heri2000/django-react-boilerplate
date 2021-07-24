@@ -3,10 +3,9 @@ import { Container } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import {
-  APP_TITLE,
-  APP_TITLE_SEPARATOR,
+  getTabTitle,
   APP_DEFAULT_LANG,
-} from "../../Const";
+} from "../../utils/Common";
 import {
   H_GetLangFromUrl,
   H_GetTranslation,
@@ -18,7 +17,7 @@ import './MainMenu.css';
 export default class MainMenu extends React.Component {
   render() {
     let translation = H_GetTranslation();
-    document.title = translation.mainMenu.moduleTitle + APP_TITLE_SEPARATOR + APP_TITLE;
+    document.title = getTabTitle(translation.mainMenu.moduleTitle);
     let lang = H_GetLangFromUrl();
     if (lang === "") lang = APP_DEFAULT_LANG;
 

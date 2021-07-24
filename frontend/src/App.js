@@ -9,7 +9,7 @@ import axios from "axios";
 
 import {
   APP_DEFAULT_LANG,
-} from "./Const";
+} from "./utils/Common";
 import {
   H_GetLangFromUrl,
 } from "./libs/Libs";

@@ -1,17 +1,14 @@
 import React from "react";
 import { Container } from "@material-ui/core";
 
-import {
-  APP_TITLE,
-  APP_TITLE_SEPARATOR,
-} from "../../Const";
+import { getTabTitle } from "../../utils/Common";
 import AppContainer from "../appContainer/AppContainer";
 import NotesList from "../notes/NotesList";
 import AddNote from "../notes/AddNote";
 
 export default class MainMenu extends React.Component {
   render() {
-    document.title = "Notes" + APP_TITLE_SEPARATOR + APP_TITLE;
+    document.title = getTabTitle("Notes");
     return (
       <AppContainer>
         <Container maxWidth="sm">

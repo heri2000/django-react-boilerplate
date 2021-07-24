@@ -25,10 +25,9 @@ import {
 import PropTypes from "prop-types";
 
 import {
-  APP_TITLE,
-  APP_TITLE_SEPARATOR,
+  getTabTitle,
   APP_DEFAULT_LANG,
-} from "../../Const";
+} from "../../utils/Common";
 import {
   H_GetLangFromUrl,
   H_GetTranslation,
@@ -70,7 +69,7 @@ class Login extends React.Component {
 
   render() {
     let translation = H_GetTranslation();
-    document.title = translation.login.moduleTitle + APP_TITLE_SEPARATOR + APP_TITLE;
+    document.title = getTabTitle(translation.login.moduleTitle);
 
     let lang = H_GetLangFromUrl();
     if (lang === "") lang = APP_DEFAULT_LANG;

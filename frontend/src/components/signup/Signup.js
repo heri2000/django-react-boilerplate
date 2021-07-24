@@ -23,10 +23,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import {
-  APP_TITLE,
-  APP_TITLE_SEPARATOR,
+  getTabTitle,
   APP_DEFAULT_LANG,
-} from "../../Const";
+} from "../../utils/Common";
 import {
   H_GetLangFromUrl,
   H_GetTranslation,
@@ -65,7 +64,7 @@ class Signup extends React.Component {
 
   render() {
     let translation = H_GetTranslation();
-    document.title = translation.signup.moduleTitle + APP_TITLE_SEPARATOR + APP_TITLE;
+    document.title = getTabTitle(translation.signup.moduleTitle);
 
     let lang = H_GetLangFromUrl();
     if (lang === "") lang = APP_DEFAULT_LANG;
