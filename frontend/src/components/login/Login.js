@@ -61,7 +61,6 @@ class Login extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-    // console.log("Login " + userData.username + " :: " + userData.password);
     let lang = H_GetLangFromUrl();
     if (lang === "") lang = APP_DEFAULT_LANG;
     this.props.login(userData, "/" + lang + "/mainmenu");
