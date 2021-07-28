@@ -33,7 +33,9 @@
     "moduleTitle": "Main Menu"
   },
   "user": {
-    "moduleTitle": "User"
+    "moduleTitle": "User",
+    "newUser": "New User",
+    "edit": "Edit"
   },
   "noMatchPage": {
     "moduleTitle": "404",

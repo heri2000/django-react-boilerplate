@@ -33,7 +33,9 @@
     "moduleTitle": "Menu Utama"
   },
   "user": {
-    "moduleTitle": "Pengguna"
+    "moduleTitle": "Pengguna",
+    "newUser": "Pengguna Baru",
+    "edit": "Ubah"
   },
   "noMatchPage": {
     "moduleTitle": "404",
