@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import {
   Button,
+  Menu,
+  MenuItem,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -35,48 +37,14 @@ class AppContainer extends React.Component {
     };
 
     this.state = {
-      showLanguageSelectionDialog: false,
       appHeaderHeight : 34,
       windowHeight: 0,
-      langButtonPositionX: 0,
-      langButtonWidth: 0,
-    };
-
-    this.langButtonRef = null;
-    this.assignLangButtonRef = element => {
-      this.langButtonRef = element;
-    }
-
-    this.setLang = (lang) => {
-      let sls = !this.state.showLanguageSelectionDialog;
-      this.setState({showLanguageSelectionDialog: sls});
-    }
-
-    this.appContainerClicked = () => {
-      if (this.state.showLanguageSelectionDialog) this.setState({showLanguageSelectionDialog: false});
     };
   }
 
   onLogout = () => {
     this.props.logout();
   };
-
-  componentDidMount() {
-    if (this.langButtonRef != null) {
-      this.setState({langButtonPositionX: this.langButtonRef.getBoundingClientRect().left});
-      this.setState({langButtonWidth: this.langButtonRef.getBoundingClientRect().width});
-    }
-
-    this.handleResize = () => {
-      if (this.langButtonRef != null) {
-        this.setState({
-          langButtonPositionX: this.langButtonRef.getBoundingClientRect().left,
-          windowHeight: window.innerHeight,
-        });
-      }
-    }
-    window.addEventListener("resize", this.handleResize);
-  }
 
   render() {
     let appHeaderStyle = { height: this.state.appHeaderHeight + "px", };
@@ -96,8 +64,6 @@ class AppContainer extends React.Component {
           <div className="AppHeaderItemRight">
             <LanguageAndLogout
               appContainerState={this.state}
-              setLang={this.setLang}
-              assignLangButtonRef={this.assignLangButtonRef}
               onLogout={this.onLogout}
             />
           </div>
@@ -123,9 +89,11 @@ function MainMenuButton() {
       <Route path="/:lang/signup" exact />
       <Route path="/:lang/mainmenu" exact />
       <Route path="*">
-        <div className="AppHeaderItem MainMenuButton1">
-          <Link to={mainMenuTo} className="MainMenuButton2" target="_blank">{translation.global.mainMenu}</Link>
-        </div>
+        <Link to={mainMenuTo} className="MainMenuButton1" target="_blank">
+          <div className="AppHeaderItem MainMenuButton2">
+            <div className="MainMenuButton3">{translation.global.mainMenu}</div>
+          </div>
+        </Link>
       </Route>
     </Switch>
   );
@@ -142,34 +110,27 @@ function LanguageAndLogout(props) {
   let translation = H_GetTranslation();
   let flagImg = flagEn;
   if (lang === "id") flagImg = flagId;
-  let languageSelectionDialog = <></>;
-  if (props.appContainerState.showLanguageSelectionDialog) {
-    let languageSelectionDialogWidth = 180;
-    let style = {
-      left: (props.appContainerState.langButtonPositionX + props.appContainerState.langButtonWidth - languageSelectionDialogWidth) + "px",
-      width: languageSelectionDialogWidth + "px",
-    };
-    let routeString = H_GetRouteStringFromUrl();
-    let routeStringEn = "/en" + routeString;
-    let routeStringId = "/id" + routeString;
-    languageSelectionDialog = (
-      <div className="LanguageSelectionDialog" style={style}>
-        <div className="LanguageSelectionOption">
-          <Link to={routeStringEn} onClick={props.setLang.bind(this, "en")}>
-            <img src={flagEn} alt="Flag icon" />
-            <span>{H_GetTranslation("en").global.languageTitle}</span>
-          </Link>
-        </div>
-        <div className="LanguageSelectionOption">
-          <Link to={routeStringId} onClick={props.setLang.bind(this, "id")}>
-            <img src={flagId} alt="Flag icon" />
-            <span>{H_GetTranslation("id").global.languageTitle}</span>
-          </Link>
-        </div>
-      </div>
-    );
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleLanguageButtonClick = (event) => {
+    setAnchorEl(event.currentTarget);
   }
-  const user = JSON.parse(localStorage.getItem('user'));;
+
+  const handleLanguageMenuClose = () => {
+    setAnchorEl(null);
+  }
+
+  const handleLanguageMenuClick = (event) => {
+    handleLanguageMenuClose();
+    console.log(event.currentTarget.id.substring(14));
+  }
+
+  const routeString = H_GetRouteStringFromUrl();
+  const routeStringEn = "/en" + routeString;
+  const routeStringId = "/id" + routeString;
+
   return(
     <div className="LanguageAndLogoutItem">
       <div className="LanguageButton1">
@@ -179,12 +140,25 @@ function LanguageAndLogout(props) {
           color="primary"
           aria-label="Language"
           title="Language"
-          onClick={props.setLang}
-          ref={props.assignLangButtonRef}
+          aria-controls="language-selection-menu"
+          onClick={handleLanguageButtonClick}
         >
           <img src={flagImg} alt={translation.global.language} title={translation.global.language} />
         </Button>
-        {languageSelectionDialog}
+        <Menu
+          id="language-selection-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleLanguageMenuClose}
+        >
+          <MenuItem id="language-menu-en" onClick={handleLanguageMenuClick}>
+            <Link to={routeStringEn} className="LanguageMenuLink"><img src={flagEn} alt="Flag icon" />&nbsp;{H_GetTranslation("en").global.languageTitle}</Link>
+          </MenuItem>
+          <MenuItem id="language-menu-id" onClick={handleLanguageMenuClick}>
+            <Link to={routeStringId} className="LanguageMenuLink"><img src={flagId} alt="Flag icon" />&nbsp;{H_GetTranslation("id").global.languageTitle}</Link>
+          </MenuItem>
+        </Menu>
       </div>
       <div className="LogoutButton1">
         <Switch>

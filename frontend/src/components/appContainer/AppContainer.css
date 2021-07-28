@@ -62,17 +62,21 @@
 }
 
 .MainMenuButton1 {
+  text-decoration: none;
+}
+
+.MainMenuButton2 {
   border: 1px solid #0079aa;
   border-radius: 3px;
 }
 
-.MainMenuButton1:hover {
+.MainMenuButton2:hover {
   background-color: #008abb;
 }
 
-.MainMenuButton2 {
+.MainMenuButton3 {
   color: #0079aa;
-  margin: 0 10px 0 10px;
+  margin: -1px 10px 4px 10px;
   font-weight: 500;
   font-size: 13.3333px;
   text-decoration: none;
@@ -82,7 +86,7 @@
   text-transform: uppercase;
 }
 
-.MainMenuButton2:hover {
+.MainMenuButton3:hover {
   color: #ffffff;
 }
 
@@ -133,6 +137,8 @@
   position: absolute;
   display: block;
   padding: 3px 0 3px 0;
+  background-color: #ffffff;
+  z-index: 9999;
 }
 
 .LanguageSelectionOption {
@@ -162,4 +168,9 @@
 .LanguageSelectionOption span {
   float: left;
   margin-left: 10px;
+}
+
+.LanguageMenuLink {
+  text-decoration: none;
+  width: 100%;
 }
