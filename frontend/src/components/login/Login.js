@@ -25,9 +25,8 @@ import PropTypes from "prop-types";
 
 import {
   getTabTitle,
-  APP_DEFAULT_LANG,
   CommonButton,
-} from "../../utils/Common";
+} from "../../libs/Common";
 import {
   H_GetLangFromUrl,
   H_GetTranslation,
@@ -61,8 +60,7 @@ class Login extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-    let lang = H_GetLangFromUrl();
-    if (lang === "") lang = APP_DEFAULT_LANG;
+    const lang = H_GetLangFromUrl();
     this.props.login(userData, "/" + lang + "/mainmenu");
   }
 
@@ -70,8 +68,7 @@ class Login extends React.Component {
     const translation = H_GetTranslation();
     document.title = getTabTitle(translation.login.moduleTitle);
 
-    let lang = H_GetLangFromUrl();
-    if (lang === "") lang = APP_DEFAULT_LANG;
+    const lang = H_GetLangFromUrl();
     const linkToSignup = "/" + lang + "/signup";
 
     return (

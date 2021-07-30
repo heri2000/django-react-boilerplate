@@ -14,9 +14,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import {
-  APP_DEFAULT_LANG,
-} from "../../utils/Common";
-import {
   H_GetLangFromUrl,
   H_GetTranslation,
   H_GetRouteStringFromUrl,
@@ -78,8 +75,7 @@ class AppContainer extends React.Component {
 
 function MainMenuButton() {
   const translation = H_GetTranslation();
-  let lang = H_GetLangFromUrl();
-  if (lang === "") lang = APP_DEFAULT_LANG;
+  const lang = H_GetLangFromUrl();
   const mainMenuTo = "/" + lang + "/mainmenu";
   return(
     <Switch>

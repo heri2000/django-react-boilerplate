@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { FormGroup, FormLabel, TextareaAutosize } from "@material-ui/core";
 import { addNote } from "./NotesActions";
 
-import { CommonButton } from "../../utils/Common";
+import { CommonButton } from "../../libs/Common";
 
 class AddNote extends Component {
   constructor(props) {

@@ -2,11 +2,11 @@ import React from "react";
 import { TextField } from '@material-ui/core';
 import { DataGrid, GridOverlay } from '@material-ui/data-grid';
 
-import { CommonButton, getTabTitle } from "../../utils/Common";
+import { CommonButton, getTabTitle } from "../../libs/Common";
 import { H_GetTranslation } from "../../libs/Libs";
 import AppContainer from "../appContainer/AppContainer";
 
-import '../../utils/Common.css';
+import '../../libs/Common.css';
 import './User.css';
 
 const noRowsOverlay = () => {

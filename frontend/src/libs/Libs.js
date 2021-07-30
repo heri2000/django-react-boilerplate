@@ -1,3 +1,4 @@
+import { APP_DEFAULT_LANG } from "./Common"
 import TranslationEn from "../translations/en.json";
 import TranslationId from "../translations/id.json";
 
@@ -24,7 +25,7 @@ export function H_GetLangFromUrl() {
   if (arrayPathName.length > 1) {
     return arrayPathName[1];
   }
-  return "";
+  return APP_DEFAULT_LANG;
 }
 
 export function H_GetRouteFromUrl() {

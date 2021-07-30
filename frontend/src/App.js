@@ -8,9 +8,6 @@ import { ToastContainer } from "react-toastify";
 import axios from "axios";
 
 import {
-  APP_DEFAULT_LANG,
-} from "./utils/Common";
-import {
   H_GetLangFromUrl,
 } from "./libs/Libs";
 
@@ -33,8 +30,7 @@ if (window.location.origin === "http://localhost:3000") {
 
 class App extends React.Component {
   render() {
-    let lang = H_GetLangFromUrl();
-    if (lang === "") lang = APP_DEFAULT_LANG;
+    const lang = H_GetLangFromUrl();
     const defaultRedirect = "/" + lang + "/login";
     return(
       <Root>

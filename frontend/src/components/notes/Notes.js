@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "@material-ui/core";
 
-import { getTabTitle } from "../../utils/Common";
+import { getTabTitle } from "../../libs/Common";
 import AppContainer from "../appContainer/AppContainer";
 import NotesList from "../notes/NotesList";
 import AddNote from "../notes/AddNote";

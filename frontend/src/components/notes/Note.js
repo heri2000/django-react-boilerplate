@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { deleteNote, updateNote } from "./NotesActions";
 
-import { CommonButton } from "../../utils/Common";
+import { CommonButton } from "../../libs/Common";
 
 class Note extends Component {
   onDeleteClick = () => {

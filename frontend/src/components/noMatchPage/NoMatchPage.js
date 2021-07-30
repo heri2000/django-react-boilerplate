@@ -3,7 +3,7 @@ import {
   Container,
 } from "@material-ui/core";
 
-import { getTabTitle } from "../../utils/Common";
+import { getTabTitle } from "../../libs/Common";
 import { H_GetTranslation } from "../../libs/Libs";
 import AppContainer from "../appContainer/AppContainer";
 
