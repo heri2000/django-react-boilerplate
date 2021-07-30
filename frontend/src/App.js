@@ -35,7 +35,7 @@ class App extends React.Component {
   render() {
     let lang = H_GetLangFromUrl();
     if (lang === "") lang = APP_DEFAULT_LANG;
-    let defaultRedirect = "/" + lang + "/login";
+    const defaultRedirect = "/" + lang + "/login";
     return(
       <Root>
         <ToastContainer hideProgressBar={true} newestOnTop={true} />

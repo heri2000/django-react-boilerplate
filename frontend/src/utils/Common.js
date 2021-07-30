@@ -14,6 +14,14 @@ export const getTabTitle = (moduleName) => {
 
 export const CommonButton = (props) => {
   return(
-    <Button className="CommonButton" variant="contained" disableElevation>{props.children}</Button>
+    <Button
+      className="CommonButton"
+      variant="contained"
+      size="small"
+      disableElevation
+      {...props}
+    >
+        {props.children}
+    </Button>
   );
 }

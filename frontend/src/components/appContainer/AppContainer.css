@@ -7,7 +7,6 @@
 }
 
 .AppHeader {
-  /* height: 34px; */
   width: 100%;
   background-color: #ffffff;
   display: flex;
@@ -129,48 +128,11 @@
   color: #ffffff;
 }
 
-.LanguageSelectionDialog {
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  top: 34px;
-  position: absolute;
-  display: block;
-  padding: 3px 0 3px 0;
-  background-color: #ffffff;
-  z-index: 9999;
-}
-
-.LanguageSelectionOption {
-  width: 100%;
-  display: block;
-}
-
-.LanguageSelectionOption a {
-  width: 100%;
-  height: 2em;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  float: left;
-}
-
-.LanguageSelectionOption a:hover {
-  color: #ffffff;
-  background-color: #0079aa;
-}
-
-.LanguageSelectionOption img {
-  margin-left: 5px;
-  float: left;
-}
-
-.LanguageSelectionOption span {
-  float: left;
-  margin-left: 10px;
-}
-
 .LanguageMenuLink {
   text-decoration: none;
   width: 100%;
+}
+
+.LanguageMenuLink img {
+  margin-bottom: -11px;
 }

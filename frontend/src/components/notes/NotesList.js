@@ -18,7 +18,7 @@ class NotesList extends Component {
       return <h2>Please add your first note</h2>;
     }
 
-    let items = notes.map(note => {
+    const items = notes.map(note => {
       return <Note key={note.id} note={note} />;
     });
     

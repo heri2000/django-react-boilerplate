@@ -16,7 +16,7 @@ import './MainMenu.css';
 
 export default class MainMenu extends React.Component {
   render() {
-    let translation = H_GetTranslation();
+    const translation = H_GetTranslation();
     document.title = getTabTitle(translation.mainMenu.moduleTitle);
     let lang = H_GetLangFromUrl();
     if (lang === "") lang = APP_DEFAULT_LANG;

@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { deleteNote, updateNote } from "./NotesActions";
-import { Button } from "@material-ui/core";
+
+import { CommonButton } from "../../utils/Common";
 
 class Note extends Component {
   onDeleteClick = () => {
@@ -28,15 +29,15 @@ class Note extends Component {
       <div>
         <hr />
         <p>(id:{note.id}) {note.content}</p>
-        <Button variant="contained" color="default" size="small" onClick={this.onUpperCaseClick}>
+        <CommonButton color="default" onClick={this.onUpperCaseClick}>
           Upper Case
-        </Button>{" "}
-        <Button variant="contained" color="default" size="small" onClick={this.onLowerCaseClick}>
+        </CommonButton>{" "}
+        <CommonButton color="default" onClick={this.onLowerCaseClick}>
           Lower Case
-        </Button>{" "}
-        <Button variant="contained" color="secondary" size="small" onClick={this.onDeleteClick}>
+        </CommonButton>{" "}
+        <CommonButton color="secondary" onClick={this.onDeleteClick}>
           Delete
-        </Button>
+        </CommonButton>
         <br /><br />
       </div>
     );

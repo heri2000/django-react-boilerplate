@@ -11,7 +11,7 @@ import './NoMatchPage.css';
 
 export default class NoMatchPage extends React.Component {
   render() {
-    let translation = H_GetTranslation();
+    const translation = H_GetTranslation();
     document.title = getTabTitle(translation.noMatchPage.moduleTitle);
     return (
       <AppContainer>

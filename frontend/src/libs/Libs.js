@@ -19,8 +19,8 @@ export function H_IsLangAbbreviation(str) {
 }
 
 export function H_GetLangFromUrl() {
-  let pathName = window.location.pathname;
-  let arrayPathName = pathName.split("/");
+  const pathName = window.location.pathname;
+  const arrayPathName = pathName.split("/");
   if (arrayPathName.length > 1) {
     return arrayPathName[1];
   }
@@ -28,8 +28,8 @@ export function H_GetLangFromUrl() {
 }
 
 export function H_GetRouteFromUrl() {
-  let pathName = window.location.pathname;
-  let arrayPathName = pathName.split("/");
+  const pathName = window.location.pathname;
+  const arrayPathName = pathName.split("/");
   if (arrayPathName.length > 2) {
     return arrayPathName[2];
   }
@@ -37,8 +37,8 @@ export function H_GetRouteFromUrl() {
 }
 
 export function H_GetSubrouteFromUrl() {
-  let pathName = window.location.pathname;
-  let arrayPathName = pathName.split("/");
+  const pathName = window.location.pathname;
+  const arrayPathName = pathName.split("/");
   if (arrayPathName.length > 3) {
     return arrayPathName[3];
   }
@@ -46,8 +46,8 @@ export function H_GetSubrouteFromUrl() {
 }
 
 export function H_GetRoutesArrayFromUrl() {
-  let pathName = window.location.pathname;
-  let arrayPathName = pathName.split("/");
+  const pathName = window.location.pathname;
+  const arrayPathName = pathName.split("/");
   if (arrayPathName.length > 2) {
     arrayPathName.splice(0, 2);
     return arrayPathName;
@@ -56,8 +56,8 @@ export function H_GetRoutesArrayFromUrl() {
 }
 
 export function H_GetRouteStringFromUrl() {
-  let pathName = window.location.pathname;
-  let arrayPathName = pathName.split("/");
+  const pathName = window.location.pathname;
+  const arrayPathName = pathName.split("/");
   if (arrayPathName.length > 2) {
     arrayPathName.splice(0, 2);
     let routeString = "";

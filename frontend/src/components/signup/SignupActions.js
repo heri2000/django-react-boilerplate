@@ -12,7 +12,7 @@ import {
 } from "../../libs/Libs";
 
 export const signupNewUser = userData => dispatch => {
-  let translation = H_GetTranslation();
+  const translation = H_GetTranslation();
   
   dispatch({ type: CREATE_USER_SUBMITTED }); // set submitted state
   axios

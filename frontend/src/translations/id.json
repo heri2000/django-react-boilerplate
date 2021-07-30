@@ -3,7 +3,8 @@
     "languageTitle": "Bahasa Indonesia",
     "mainMenu": "Menu Utama",
     "language": "Bahasa",
-    "logout": "Keluar"
+    "logout": "Keluar",
+    "empty": "Kosong"
   },
   "login": {
     "moduleTitle": "Login",
@@ -35,7 +36,9 @@
   "user": {
     "moduleTitle": "Pengguna",
     "newUser": "Pengguna Baru",
-    "edit": "Ubah"
+    "edit": "Ubah",
+    "filterUserNamefirstNameLastNameEmail": "Filter Nama User / Nama Depan / Nama Belakang / Email",
+    "showRefresh": "Tampilkan / Refresh"
   },
   "noMatchPage": {
     "moduleTitle": "404",

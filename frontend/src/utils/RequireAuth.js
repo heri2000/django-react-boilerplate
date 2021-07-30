@@ -19,7 +19,7 @@ export default function requireAuth(Component) {
     checkAuth() {
       if (!this.props.isAuthenticated) {
         const redirectAfterLogin = this.props.location.pathname;
-        let lang = H_GetLangFromUrl();
+        const lang = H_GetLangFromUrl();
         this.props.dispatch(push(`/` + lang + `/login?next=${redirectAfterLogin}`));
       }
     }

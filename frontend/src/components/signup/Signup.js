@@ -9,7 +9,6 @@ import {
   InputLabel,
   FilledInput,
   OutlinedInput,
-  Button,
 } from "@material-ui/core";
 import {
   Visibility,
@@ -25,6 +24,7 @@ import PropTypes from "prop-types";
 import {
   getTabTitle,
   APP_DEFAULT_LANG,
+  CommonButton,
 } from "../../utils/Common";
 import {
   H_GetLangFromUrl,
@@ -63,7 +63,7 @@ class Signup extends React.Component {
   }
 
   render() {
-    let translation = H_GetTranslation();
+    const translation = H_GetTranslation();
     document.title = getTabTitle(translation.signup.moduleTitle);
 
     let lang = H_GetLangFromUrl();
@@ -114,13 +114,14 @@ class Signup extends React.Component {
             </Container>
           </form>
           <Container className="SignupFormItemContainer">
-            <Button
-              variant="contained"
+            <CommonButton
               color="primary"
               className="SignupButton"
-              onClick={this.onSignupClick}>
+              size="medium"
+              onClick={this.onSignupClick}
+            >
                 {translation.signup.signup}
-            </Button>
+            </CommonButton>
             <p className="SignupText">
               {translation.signup.alreadyHaveAccount} <Link to={linkToLogin}>{translation.signup.login}</Link>
             </p>

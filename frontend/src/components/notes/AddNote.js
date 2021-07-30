@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Button, FormGroup, FormLabel, TextareaAutosize } from "@material-ui/core";
+import { FormGroup, FormLabel, TextareaAutosize } from "@material-ui/core";
 import { addNote } from "./NotesActions";
+
+import { CommonButton } from "../../utils/Common";
 
 class AddNote extends Component {
   constructor(props) {
@@ -40,9 +42,12 @@ class AddNote extends Component {
           </FormGroup>
         </form>
         <br />
-        <Button variant="contained" color="primary" size="small" onClick={this.onAddClick}>
+        <CommonButton
+          color="primary"
+          onClick={this.onAddClick}
+        >
           Add note
-        </Button>
+        </CommonButton>
         <br /><br /><br />
       </div>
     );

@@ -3,7 +3,8 @@
     "languageTitle": "English",
     "mainMenu": "Main Menu",
     "language": "Language",
-    "logout": "Logout"
+    "logout": "Logout",
+    "empty": "Empty"
   },
   "login": {
     "moduleTitle": "Login",
@@ -35,7 +36,9 @@
   "user": {
     "moduleTitle": "User",
     "newUser": "New User",
-    "edit": "Edit"
+    "edit": "Edit",
+    "filterUserNamefirstNameLastNameEmail": "Filter Username / First Name / Last Name / Email",
+    "showRefresh": "Show / Refresh"
   },
   "noMatchPage": {
     "moduleTitle": "404",

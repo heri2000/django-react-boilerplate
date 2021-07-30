@@ -37,7 +37,7 @@ class AppContainer extends React.Component {
     };
 
     this.state = {
-      appHeaderHeight : 34,
+      appHeaderHeight : 35,
       windowHeight: 0,
     };
   }
@@ -47,8 +47,8 @@ class AppContainer extends React.Component {
   };
 
   render() {
-    let appHeaderStyle = { height: this.state.appHeaderHeight + "px", };
-    let appWorkspaceStyle = {
+    const appHeaderStyle = { height: this.state.appHeaderHeight + "px", };
+    const appWorkspaceStyle = {
       paddingTop: this.state.appHeaderHeight + "px",
       height: (this.state.windowHeight - this.state.appHeaderHeight) + "px",
     };
@@ -77,10 +77,10 @@ class AppContainer extends React.Component {
 }
 
 function MainMenuButton() {
-  let translation = H_GetTranslation();
+  const translation = H_GetTranslation();
   let lang = H_GetLangFromUrl();
   if (lang === "") lang = APP_DEFAULT_LANG;
-  let mainMenuTo = "/" + lang + "/mainmenu";
+  const mainMenuTo = "/" + lang + "/mainmenu";
   return(
     <Switch>
       <Route path="/" exact />
@@ -106,8 +106,8 @@ function AppTitle(props) {
 }
 
 function LanguageAndLogout(props) {
-  let lang = H_GetLangFromUrl();
-  let translation = H_GetTranslation();
+  const lang = H_GetLangFromUrl();
+  const translation = H_GetTranslation();
   let flagImg = flagEn;
   if (lang === "id") flagImg = flagId;
   const user = JSON.parse(localStorage.getItem('user'));
