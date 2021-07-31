@@ -39,7 +39,10 @@
     "edit": "Edit",
     "filterUserNamefirstNameLastNameEmail": "Filter: Username / First Name / Last Name / Email",
     "showRefresh": "Show / Refresh",
-    "username": "User Name"
+    "username": "User Name",
+    "email": "Email",
+    "firstName": "First Name",
+    "lastName": "Last Name"
   },
   "noMatchPage": {
     "moduleTitle": "404",

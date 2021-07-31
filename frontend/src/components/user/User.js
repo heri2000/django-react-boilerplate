@@ -24,6 +24,27 @@ const User = () => {
       flex: 1,
       editable: false,
     },
+    {
+      field: 'email',
+      headerName: translation.user.email,
+      minWidth: 250,
+      flex: 1,
+      editable: false,
+    },
+    {
+      field: 'first_name',
+      headerName: translation.user.firstName,
+      minWidth: 150,
+      flex: 1,
+      editable: false,
+    },
+    {
+      field: 'last_name',
+      headerName: translation.user.lastName,
+      minWidth: 150,
+      flex: 1,
+      editable: false,
+    },
   ];
 
   const [userData, setRowData] = React.useState([
