@@ -37,7 +37,7 @@
     "moduleTitle": "Pengguna",
     "newUser": "Pengguna Baru",
     "edit": "Ubah",
-    "filterUserNamefirstNameLastNameEmail": "Filter: Nama User / Nama Depan / Nama Belakang / Email",
+    "filterUserNameEmailFirstNameLastName": "Filter: Nama User / Email / Nama Depan / Nama Belakang",
     "showRefresh": "Tampilkan / Refresh",
     "username": "Nama User",
     "email": "Email",

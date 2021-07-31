@@ -37,7 +37,7 @@
     "moduleTitle": "User",
     "newUser": "New User",
     "edit": "Edit",
-    "filterUserNamefirstNameLastNameEmail": "Filter: Username / First Name / Last Name / Email",
+    "filterUserNameEmailFirstNameLastName": "Filter: Username / Email / First Name / Last Name",
     "showRefresh": "Show / Refresh",
     "username": "User Name",
     "email": "Email",
