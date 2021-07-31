@@ -1,20 +1,68 @@
 import React from "react";
-import { TextField } from '@material-ui/core';
-import { DataGrid, GridOverlay } from '@material-ui/data-grid';
 
-import { CommonButton, getTabTitle } from "../../libs/Common";
+import {
+  CommonButton,
+  CommonTextField,
+  CommonDataGrid,
+  getTabTitle,
+} from "../../libs/Common";
 import { H_GetTranslation } from "../../libs/Libs";
 import AppContainer from "../appContainer/AppContainer";
 
 import '../../libs/Common.css';
 import './User.css';
 
-const noRowsOverlay = () => {
+const User = () => {
   const translation = H_GetTranslation();
+  document.title = getTabTitle(translation.user.moduleTitle);
+
+  const userColumns = [
+    {
+      field: 'username',
+      headerName: translation.user.username,
+      minWidth: 150,
+      flex: 1,
+      editable: false,
+    },
+  ];
+
+  const [userData, setRowData] = React.useState([
+    // {
+    //   id: 1,
+    //   username: "admin",
+    // }
+  ]);
+
   return(
-    <GridOverlay>{translation.global.empty}</GridOverlay>
+    <AppContainer title={translation.user.moduleTitle}>
+    <div className="PageContent">
+      <div className="FilterPanel">
+        <CommonTextField
+          className="FilterField"
+          name="filter"
+          label={translation.user.filterUserNamefirstNameLastNameEmail}
+          autoFocus
+        />
+        <div>
+          <CommonButton className="ShowRefreshButton">{translation.user.showRefresh}</CommonButton>
+        </div>
+      </div>
+      <div className="ButtonPanel">
+        <CommonButton>{translation.user.newUser}</CommonButton>
+        <CommonButton>{translation.user.edit}</CommonButton>
+      </div>
+      <div className="DataPanel">
+        <CommonDataGrid
+          rows={userData}
+          columns={userColumns}
+        />
+      </div>
+    </div>
+  </AppContainer>
   );
 }
+
+export default User;
 
 /*
 export default class User extends React.Component {
@@ -198,36 +246,3 @@ export default class User extends React.Component {
   }
 }
 */
-
-const User = () => {
-  const translation = H_GetTranslation();
-  document.title = getTabTitle(translation.user.moduleTitle);
-
-  return(
-    <AppContainer title={translation.user.moduleTitle}>
-    <div className="PageContent">
-      <div className="FilterPanel">
-        <div className="FilterPanel1">
-          <TextField
-            name="filter"
-            label={translation.user.filterUserNamefirstNameLastNameEmail}
-            variant="outlined"
-            size="small"
-            fullWidth={true}
-            autoFocus
-          />
-
-        </div>
-      </div>
-      <div className="ButtonPanel">
-        <CommonButton>{translation.user.newUser}</CommonButton>
-        <CommonButton>{translation.user.edit}</CommonButton>
-      </div>
-      <div className="DataPanel">
-      </div>
-    </div>
-  </AppContainer>
-  );
-}
-
-export default User;

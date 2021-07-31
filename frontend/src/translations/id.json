@@ -4,7 +4,7 @@
     "mainMenu": "Menu Utama",
     "language": "Bahasa",
     "logout": "Keluar",
-    "empty": "Kosong"
+    "noData": "Tidak ada data"
   },
   "login": {
     "moduleTitle": "Login",
@@ -37,8 +37,9 @@
     "moduleTitle": "Pengguna",
     "newUser": "Pengguna Baru",
     "edit": "Ubah",
-    "filterUserNamefirstNameLastNameEmail": "Filter Nama User / Nama Depan / Nama Belakang / Email",
-    "showRefresh": "Tampilkan / Refresh"
+    "filterUserNamefirstNameLastNameEmail": "Filter: Nama User / Nama Depan / Nama Belakang / Email",
+    "showRefresh": "Tampilkan / Refresh",
+    "username": "Nama User"
   },
   "noMatchPage": {
     "moduleTitle": "404",
