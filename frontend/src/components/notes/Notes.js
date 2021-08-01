@@ -6,7 +6,7 @@ import AppContainer from "../appContainer/AppContainer";
 import NotesList from "../notes/NotesList";
 import AddNote from "../notes/AddNote";
 
-export default class MainMenu extends React.Component {
+export default class Notes extends React.Component {
   render() {
     document.title = getTabTitle("Notes");
     return (
