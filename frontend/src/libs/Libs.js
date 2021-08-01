@@ -1,6 +1,8 @@
 import TranslationEn from "../translations/en.json";
 import TranslationId from "../translations/id.json";
 
+import { APP_DEFAULT_LANG } from "./Common";
+
 export function H_GetTranslation(lang=null) {
   if (lang == null) lang = H_GetLangFromUrl();
   let translation = TranslationEn;
@@ -22,9 +24,12 @@ export function H_GetLangFromUrl() {
   const pathName = window.location.pathname;
   const arrayPathName = pathName.split("/");
   if (arrayPathName.length > 1) {
+    if (arrayPathName[1] === "") {
+      return APP_DEFAULT_LANG;
+    }
     return arrayPathName[1];
   }
-  return "";
+  return APP_DEFAULT_LANG;
 }
 
 export function H_GetRouteFromUrl() {
