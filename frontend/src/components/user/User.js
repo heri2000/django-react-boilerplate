@@ -10,16 +10,17 @@ import './User.css';
 
 const User = () => {
   const [filter, setFilter] = useState("");
+  const [currentFilter, setCurrentFilter] = useState(filter);
   const [showList, setShowList] = useState(false);
 
   const handleShowRefreshButtonClick = () => {
+    setCurrentFilter(filter);
     setShowList(true);
   }
 
   const translation = H_GetTranslation();
   document.title = getTabTitle(translation.user.moduleTitle);
-
-  console.log("a");
+  
   return( 
     <AppContainer title={translation.user.moduleTitle}>
       <div className="PageContent">
@@ -28,7 +29,11 @@ const User = () => {
           setFilter={setFilter}
           handleShowRefreshButtonClick={handleShowRefreshButtonClick}
         />
-        {showList ? <UserList filter={filter} /> : ""}
+        {showList ?
+          <UserList
+            filter={currentFilter}
+          /> : ""
+        }
       </div>
     </AppContainer>
   );
