@@ -1,4 +1,4 @@
-import { GET_USERS, ADD_USER, UPDATE_USER } from "./UserTypes";
+import { GET_USERS, ADD_USER, UPDATE_USER, DELETE_USER } from "./UserTypes";
 
 const initialState = {
   users: []
@@ -16,8 +16,13 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         users: [...state.users, action.payload]
       };
+    case DELETE_USER:
+      return {
+        ...state,
+        users: state.users.filter((item, index) => item.id !== action.payload)
+      };
     case UPDATE_USER:
-      const updatedUser = state.users.map(item => {
+      const updatedUsers = state.users.map(item => {
         if (item.id === action.payload.id) {
           return { ...item, ...action.payload };
         }
@@ -25,7 +30,7 @@ export const userReducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        users: updatedUser
+        users: updatedUsers
       };
     default:
       return state;

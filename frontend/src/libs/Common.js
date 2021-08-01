@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { H_GetTranslation } from "./Libs";
 
+import './Common.css';
+
 export const APP_TITLE = "Boilerplate";
 export const APP_TITLE_SEPARATOR = " | ";
 export const APP_DEFAULT_LANG = "en";

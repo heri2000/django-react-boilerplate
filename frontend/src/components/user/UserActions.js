@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toastOnError } from "../../utils/Utils";
-import { GET_USERS, ADD_USER, UPDATE_USER } from "./UserTypes";
+import { GET_USERS, ADD_USER, DELETE_USER, UPDATE_USER } from "./UserTypes";
 
 export const getUsers = () => dispatch => {
   axios
@@ -23,6 +23,20 @@ export const addUser = user => dispatch => {
       dispatch({
         type: ADD_USER,
         payload: response.data
+      });
+    })
+    .catch(error => {
+      toastOnError(error);
+    });
+};
+
+export const deleteUser = id => dispatch => {
+  axios
+    .delete(`/api/v1/users/${id}/`)
+    .then(response => {
+      dispatch({
+        type: DELETE_USER,
+        payload: id
       });
     })
     .catch(error => {
