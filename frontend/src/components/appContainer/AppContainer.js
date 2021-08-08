@@ -35,7 +35,6 @@ class AppContainer extends React.Component {
 
     this.state = {
       appHeaderHeight : 35,
-      windowHeight: 0,
     };
   }
 
@@ -45,10 +44,6 @@ class AppContainer extends React.Component {
 
   render() {
     const appHeaderStyle = { height: this.state.appHeaderHeight + "px", };
-    const appWorkspaceStyle = {
-      paddingTop: this.state.appHeaderHeight + "px",
-      height: (this.state.windowHeight - this.state.appHeaderHeight) + "px",
-    };
     return(
       <div className="AppContainer" onClick={this.appContainerClicked}>
         <div className="AppHeader" style={appHeaderStyle}>
@@ -65,7 +60,7 @@ class AppContainer extends React.Component {
             />
           </div>
         </div>
-        <div className="AppWorkspace" style={appWorkspaceStyle}>
+        <div className="AppWorkspace">
           {this.props.children}
         </div>
       </div>
