@@ -28,4 +28,4 @@ class CustomTokenCreateSerializer(TokenCreateSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "first_name", "last_name", "email", "last_login", "is_staff", "is_active"]
+        fields = ["id", "username", "first_name", "last_name", "email", "last_login", "is_staff", "is_superuser", "is_active"]

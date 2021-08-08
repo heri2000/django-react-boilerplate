@@ -42,7 +42,10 @@
     "username": "User Name",
     "email": "Email",
     "first_name": "First Name",
-    "last_name": "Last Name"
+    "last_name": "Last Name",
+    "is_staff": "Staff",
+    "is_superuser": "Super User",
+    "is_active": "Active"
   },
   "noMatchPage": {
     "moduleTitle": "404",

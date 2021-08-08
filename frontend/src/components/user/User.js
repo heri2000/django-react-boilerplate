@@ -33,11 +33,13 @@ class User extends React.Component {
     const { users } = this.props.users;
 
     const columns = [
-      { field: 'id', headerName: 'ID', hide: true },
       { field: 'username', headerName: translation.user.username, minWidth: 150, flex: 2, editable: false },
       { field: 'email', headerName: translation.user.email, minWidth: 200, flex: 3, editable: false },
       { field: 'first_name', headerName: translation.user.first_name, minWidth: 200, flex: 3, editable: false },
       { field: 'last_name', headerName: translation.user.last_name, minWidth: 200, flex: 3, editable: false },
+      { field: 'is_staff', headerName: translation.user.is_staff, type: "boolean", minWidth: 150, flex: 0, editable: false },
+      { field: 'is_superuser', headerName: translation.user.is_superuser, type: "boolean", minWidth: 150, flex: 0, editable: false },
+      { field: 'is_active', headerName: translation.user.is_active, type: "boolean", minWidth: 150, flex: 0, editable: false },
     ];
     
     return( 
