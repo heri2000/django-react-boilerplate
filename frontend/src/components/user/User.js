@@ -4,10 +4,15 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getUsers } from "./UserActions";
 
-import { CommonButton, CommonDataGrid, getTabTitle } from "../../libs/Common";
+import {
+  CommonButton,
+  CommonDataGrid,
+  getTabTitle
+} from "../../libs/Common";
 import { H_GetTranslation } from "../../libs/Libs";
 import AppContainer from "../appContainer/AppContainer";
 import UserFilter from "./UserFilter";
+import UserEditor from "./UserEditor";
 
 import './User.css';
 
@@ -17,13 +22,9 @@ class User extends React.Component {
 
     this.state = {
       filter: "",
-      visibility: "hidden",
+      buttonAndDataVisibility: "hidden",
+      editUser: false,
     }
-  }
-
-  handleShowRefreshButtonClick = (filter) => {
-    this.setState({ filter: filter, visibility: "visible" });
-    this.props.getUsers(filter);
   }
 
   render() {
@@ -42,15 +43,32 @@ class User extends React.Component {
       { field: 'is_active', headerName: translation.user.is_active, type: "boolean", minWidth: 150, flex: 0, editable: false },
     ];
     
+    const handleShowRefreshButtonClick = (filter) => {
+      this.setState({ filter: filter, buttonAndDataVisibility: "visible" });
+      this.props.getUsers(filter);
+    }
+
+    const handleNewUserButtonClick = () => {
+      this.setState({ editUser: true });
+    }
+
+    const handleCloseUserEditor = () => {
+      this.setState({ editUser: false });
+    }
+
     return( 
       <AppContainer title={translation.user.moduleTitle}>
         <div className="PageContent">
-          <UserFilter handleShowRefreshButtonClick={this.handleShowRefreshButtonClick} />
-          <div className="ButtonPanel" style={{visibility: this.state.visibility}}>
-            <CommonButton>{translation.user.newUser}</CommonButton>
+          <UserFilter handleShowRefreshButtonClick={handleShowRefreshButtonClick} />
+          <UserEditor
+            open={this.state.editUser}
+            onClose={handleCloseUserEditor}
+          />
+          <div className="ButtonPanel" style={{visibility: this.state.buttonAndDataVisibility}}>
+            <CommonButton onClick={handleNewUserButtonClick}>{translation.user.newUser}</CommonButton>
             <CommonButton>{translation.user.edit}</CommonButton>
           </div>
-          <div className="DataPanel" style={{visibility: this.state.visibility}}>
+          <div className="DataPanel" style={{visibility: this.state.buttonAndDataVisibility}}>
             <CommonDataGrid columns={columns} rows={users} />
           </div>
         </div>
@@ -68,6 +86,4 @@ const mapStateToProps = state => ({
   users: state.users
 });
 
-export default connect(mapStateToProps, {
-  getUsers
-})(withRouter(User));
+export default connect(mapStateToProps, { getUsers })(withRouter(User));

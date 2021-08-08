@@ -49,6 +49,6 @@ Note.propTypes = {
 };
 const mapStateToProps = state => ({});
 
-export default connect(mapStateToProps, { deleteNote, updateNote })(
-  withRouter(Note)
-);
+export default connect(mapStateToProps, {
+  deleteNote, updateNote
+})(withRouter(Note));

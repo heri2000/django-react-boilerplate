@@ -1,6 +1,17 @@
-import { Button, TextField } from "@material-ui/core";
+import {
+  Button,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Paper
+} from "@material-ui/core";
 import { DataGrid, GridOverlay } from '@material-ui/data-grid';
 import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
+import Draggable from 'react-draggable';
 
 import { H_GetTranslation } from "./Libs";
 
@@ -68,5 +79,39 @@ export const CommonDataGrid = (props) => {
       autoHeight={false}
       {...props}
     />
+  );
+}
+
+
+const PaperComponent = (props) => {
+  return (
+    <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+      <Paper {...props} />
+    </Draggable>
+  );
+}
+
+export const CommonDraggableDialog = ({open, onClose, title, content, actions, maxWidth}) => {
+  return (
+    <Dialog
+      open={open}
+      onClose={onClose}
+      PaperComponent={PaperComponent}
+      aria-labelledby="draggable-dialog-title"
+      maxWidth={maxWidth}
+      fullWidth={true}
+    >
+      <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+        {title}
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText>
+          {content}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        {actions}
+      </DialogActions>
+    </Dialog>
   );
 }
