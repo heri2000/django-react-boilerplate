@@ -41,8 +41,8 @@
     "showRefresh": "Tampilkan / Refresh",
     "username": "Nama User",
     "email": "Email",
-    "firstName": "Nama Depan",
-    "lastName": "Nama Belakang"
+    "first_name": "Nama Depan",
+    "last_name": "Nama Belakang"
   },
   "noMatchPage": {
     "moduleTitle": "404",

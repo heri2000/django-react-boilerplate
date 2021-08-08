@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, get_user_model
 from djoser.conf import settings
 from djoser.serializers import TokenCreateSerializer
 
+from rest_framework import serializers
+
 User = get_user_model()
 
 class CustomTokenCreateSerializer(TokenCreateSerializer):
@@ -22,3 +24,8 @@ class CustomTokenCreateSerializer(TokenCreateSerializer):
         if self.user: # and self.user.is_active:
             return attrs
         self.fail("invalid_credentials")
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["id", "username", "first_name", "last_name", "email", "last_login", "is_staff", "is_active"]

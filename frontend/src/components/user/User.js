@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getUsers } from "./UserActions";
 
-import { CommonButton, getTabTitle } from "../../libs/Common";
+import { CommonButton, CommonDataGrid, getTabTitle } from "../../libs/Common";
 import { H_GetTranslation } from "../../libs/Libs";
 import AppContainer from "../appContainer/AppContainer";
 import UserFilter from "./UserFilter";
@@ -17,27 +17,13 @@ class User extends React.Component {
 
     this.state = {
       filter: "",
-      currentFilter: "",
-      showList: false,
+      visibility: "hidden",
     }
   }
 
-  setFilter = (filter) => {
-    this.setState({ filter: filter });
-  }
-
-  setCurrentFilter = () => {
-    this.setState({ currentFilter: this.state.filter });
-  }
-
-  showList() {
-    this.setState({ showList: true });
-  }
-
-  handleShowRefreshButtonClick = () => {
-    this.setCurrentFilter(this.state.filter);
-    this.showList();
-    this.props.getUsers();
+  handleShowRefreshButtonClick = (filter) => {
+    this.setState({ filter: filter, visibility: "visible" });
+    this.props.getUsers(filter);
   }
 
   render() {
@@ -45,30 +31,26 @@ class User extends React.Component {
     document.title = getTabTitle(translation.user.moduleTitle);
     
     const { users } = this.props.users;
-    const items = users.map(user => {
-      return(<li key={user.username}>{user.username}, {user.email}<br /></li>);
-    });
+
+    const columns = [
+      { field: 'id', headerName: 'ID', hide: true },
+      { field: 'username', headerName: translation.user.username, minWidth: 150, flex: 2, editable: false },
+      { field: 'email', headerName: translation.user.email, minWidth: 200, flex: 3, editable: false },
+      { field: 'first_name', headerName: translation.user.first_name, minWidth: 200, flex: 3, editable: false },
+      { field: 'last_name', headerName: translation.user.last_name, minWidth: 200, flex: 3, editable: false },
+    ];
     
     return( 
       <AppContainer title={translation.user.moduleTitle}>
         <div className="PageContent">
-          <UserFilter
-            filter={this.state.filter}
-            setFilter={this.setFilter}
-            handleShowRefreshButtonClick={this.handleShowRefreshButtonClick}
-          />
-          {this.state.showList ?
-            <div>
-              <div className="ButtonPanel">
-                <CommonButton>{translation.user.newUser}</CommonButton>
-                <CommonButton>{translation.user.edit}</CommonButton>
-              </div>
-              <div className="DataPanel">
-                <ul>{items}</ul>
-              </div>
-            </div>
-            : ""
-          }
+          <UserFilter handleShowRefreshButtonClick={this.handleShowRefreshButtonClick} />
+          <div className="ButtonPanel" style={{visibility: this.state.visibility}}>
+            <CommonButton>{translation.user.newUser}</CommonButton>
+            <CommonButton>{translation.user.edit}</CommonButton>
+          </div>
+          <div className="DataPanel" style={{visibility: this.state.visibility}}>
+            <CommonDataGrid columns={columns} rows={users} />
+          </div>
         </div>
       </AppContainer>
     );
