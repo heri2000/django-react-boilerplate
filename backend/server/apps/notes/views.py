@@ -11,4 +11,5 @@ class NoteViewSet(viewsets.ModelViewSet):
         serializer.save(created_by=self.request.user)
 
     def get_queryset(self):
-        return self.queryset.filter(created_by=self.request.user)
+        # q = self.request.GET['q']
+        return self.queryset.filter(created_by=self.request.user) # .filter(content__icontains=q)
