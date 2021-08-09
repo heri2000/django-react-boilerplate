@@ -30,10 +30,14 @@ export const getTabTitle = (moduleName) => {
 }
 
 export const CommonButton = (props) => {
+  let variant = props.variant;
+  if (variant === undefined) {
+    variant = "contained";
+  }
   return(
     <Button
       className="CommonButton"
-      variant="contained"
+      variant={variant}
       size="small"
       disableElevation
       {...props}
@@ -63,7 +67,7 @@ export const CommonDataGrid = (props) => {
   
   const useStyles = makeStyles({
     columnHeader: {
-      backgroundColor: '#e0e0e0',
+      backgroundColor: "#e2e5f4",
     }
   });
   const classes = useStyles();
@@ -74,9 +78,9 @@ export const CommonDataGrid = (props) => {
       classes={{ columnHeader: classes.columnHeader }}
       pageSize={25}
       checkboxSelection={true}
-      headerHeight={30}
+      headerHeight={35}
       rowHeight={30}
-      autoHeight={false}
+      autoHeight={true}
       {...props}
     />
   );
