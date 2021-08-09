@@ -41,6 +41,6 @@ body {
   flex: 1 1 auto;
 }
 
-.ShowRefreshButton {
+.ShowButton {
   margin: 5px 0 0 5px !important;
 }

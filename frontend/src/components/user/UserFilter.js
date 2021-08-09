@@ -2,17 +2,17 @@ import { useState } from 'react'
 import { H_GetTranslation } from "../../libs/Libs";
 import { CommonTextField, CommonButton } from "../../libs/Common";
 
-const UserFilter = ({ handleShowRefreshButtonClick }) => {
+const UserFilter = ({ handleShowButtonClick }) => {
   const [filter, setFilter] = useState("");
   
   const handleFilterKeyPress = (e) => {
     if (e.key === "Enter") {
-      handleShowRefreshButtonClick(filter);
+      handleShowButtonClick(filter);
     }
   }
 
   const handleClick = () => {
-    handleShowRefreshButtonClick(filter);
+    handleShowButtonClick(filter);
   }
 
   const translation = H_GetTranslation();
@@ -30,11 +30,11 @@ const UserFilter = ({ handleShowRefreshButtonClick }) => {
       />
       <div>
         <CommonButton
-          className="ShowRefreshButton"
+          className="ShowButton"
           onClick={handleClick}
           color="primary"
         >
-          {translation.user.showRefresh}
+          {translation.user.show}
         </CommonButton>
       </div>
     </div>

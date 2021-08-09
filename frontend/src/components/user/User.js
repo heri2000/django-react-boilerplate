@@ -43,7 +43,7 @@ class User extends React.Component {
       { field: 'is_active', headerName: translation.user.is_active, type: "boolean", minWidth: 150, flex: 0, editable: false },
     ];
     
-    const handleShowRefreshButtonClick = (filter) => {
+    const handleShowButtonClick = (filter) => {
       this.setState({ filter: filter, buttonAndDataVisibility: "visible" });
       this.props.getUsers(filter);
     }
@@ -59,10 +59,11 @@ class User extends React.Component {
     return( 
       <AppContainer title={translation.user.moduleTitle}>
         <div className="PageContent">
-          <UserFilter handleShowRefreshButtonClick={handleShowRefreshButtonClick} />
+          <UserFilter handleShowButtonClick={handleShowButtonClick} />
           <div className="ButtonPanel" style={{visibility: this.state.buttonAndDataVisibility}}>
             <CommonButton onClick={handleNewUserButtonClick}>{translation.user.newUser}</CommonButton>
             <CommonButton>{translation.user.edit}</CommonButton>
+            <CommonButton>{translation.user.withSelected}</CommonButton>
           </div>
           <div className="DataPanel" style={{visibility: this.state.buttonAndDataVisibility}}>
             <CommonDataGrid columns={columns} rows={users} />
