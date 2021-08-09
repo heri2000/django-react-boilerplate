@@ -16,7 +16,7 @@ import requireAuth from "./utils/RequireAuth";
 import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
 import MainMenu from "./components/mainMenu/MainMenu";
-import User from "./components/user/User";
+import User from "./components/userAccounts/UserAccounts";
 import NoMatchPage from "./components/noMatchPage/NoMatchPage";
 import Notes from "./components/notes/Notes";
 

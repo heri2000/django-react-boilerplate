@@ -14,9 +14,9 @@ import AppContainer from "../appContainer/AppContainer";
 import UserFilter from "./UserFilter";
 import UserEditor from "./UserEditor";
 
-import './User.css';
+import './UserAccounts.css';
 
-class User extends React.Component {
+class UserAccounts extends React.Component {
   constructor(props) {
     super(props);
 
@@ -81,7 +81,7 @@ class User extends React.Component {
   }
 }
 
-User.propTypes = {
+UserAccounts.propTypes = {
   getUsers: PropTypes.func.isRequired,
   users: PropTypes.object.isRequired
 };
@@ -90,4 +90,4 @@ const mapStateToProps = state => ({
   users: state.users
 });
 
-export default connect(mapStateToProps, { getUsers })(withRouter(User));
+export default connect(mapStateToProps, { getUsers })(withRouter(UserAccounts));
