@@ -115,7 +115,6 @@ function LanguageAndLogout(props) {
 
   const handleLanguageMenuClick = (event) => {
     handleLanguageMenuClose();
-    console.log(event.currentTarget.id.substring(14));
   }
 
   const routeString = H_GetRouteStringFromUrl();
