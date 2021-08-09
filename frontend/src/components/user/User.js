@@ -60,10 +60,6 @@ class User extends React.Component {
       <AppContainer title={translation.user.moduleTitle}>
         <div className="PageContent">
           <UserFilter handleShowRefreshButtonClick={handleShowRefreshButtonClick} />
-          <UserEditor
-            open={this.state.editUser}
-            onClose={handleCloseUserEditor}
-          />
           <div className="ButtonPanel" style={{visibility: this.state.buttonAndDataVisibility}}>
             <CommonButton onClick={handleNewUserButtonClick}>{translation.user.newUser}</CommonButton>
             <CommonButton>{translation.user.edit}</CommonButton>
@@ -71,6 +67,13 @@ class User extends React.Component {
           <div className="DataPanel" style={{visibility: this.state.buttonAndDataVisibility}}>
             <CommonDataGrid columns={columns} rows={users} />
           </div>
+
+          <UserEditor
+            user={{}}
+            open={this.state.editUser}
+            onClose={handleCloseUserEditor}
+          />
+
         </div>
       </AppContainer>
     );
