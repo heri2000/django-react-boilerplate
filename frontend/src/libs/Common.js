@@ -65,21 +65,12 @@ export const CommonDataGrid = (props) => {
     );
   }
   
-  const useStyles = makeStyles({
-    columnHeader: {
-      backgroundColor: "#e2e5f4",
-    }
-  });
-  const classes = useStyles();
-
   return(
     <DataGrid
       components={{ NoRowsOverlay: noRowsOverlay }}
-      classes={{ columnHeader: classes.columnHeader }}
       pageSize={25}
       checkboxSelection={true}
-      headerHeight={35}
-      rowHeight={30}
+      density="compact"
       autoHeight={true}
       {...props}
     />
