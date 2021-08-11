@@ -2,3 +2,7 @@ export const GET_USERS = "GET_USERS";
 export const ADD_USER = "ADD_USER";
 export const DELETE_USER = "DELETE_USER";
 export const UPDATE_USER = "UPDATE_USER";
+
+export const SET_BUTTON_AND_DATA_VISIBILITY = "SET_BUTTON_AND_DATA_VISIBILITY";
+export const SET_EDIT_USER = "SET_EDIT_USER"
+export const SET_SAVING_USER = "SET_SAVING_USER"

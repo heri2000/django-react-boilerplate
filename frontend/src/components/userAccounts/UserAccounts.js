@@ -1,8 +1,13 @@
-import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getUsers } from "./UserActions";
+import {
+  getUsers,
+  addUser,
+  setButtonAndDataVisibility,
+  setEditUser,
+  setSavingUser
+} from "./UserActions";
 
 import {
   CommonButton,
@@ -17,16 +22,8 @@ import UserEditor from "./UserEditor";
 import './UserAccounts.css';
 
 const UserAccounts = (props) => {
-  const [state, setState] = useState({
-    filter: "",
-    buttonAndDataVisibility: "hidden",
-    editUser: false,
-  });
-
   const translation = H_GetTranslation();
   document.title = getTabTitle(translation.user.moduleTitle);
-  
-  const { users } = props.users;
 
   const columns = [
     { field: 'username', headerName: translation.user.username, minWidth: 150, flex: 2, editable: false },
@@ -38,37 +35,51 @@ const UserAccounts = (props) => {
     { field: 'is_active', headerName: translation.user.is_active, type: "boolean", minWidth: 150, flex: 0, editable: false },
   ];
   
+  const { buttonAndDataVisibility } = props.users;
+  const { editUser } = props.users;
+  const { isSavingUser } = props.users;
+  const { users } = props.users;
+  let user = null;
+
   const handleShowButtonClick = (filter) => {
-    setState({ ...state, filter: filter, buttonAndDataVisibility: "visible" });
     props.getUsers(filter);
   }
 
   const handleNewUserButtonClick = () => {
-    setState({ ...state, editUser: true });
+    user = null;
+    props.setEditUser(true);
   }
 
   const handleCloseUserEditor = () => {
-    setState({ ...state, editUser: false });
+    props.setEditUser(false);
+  }
+
+  const handleSaveUser = (user) => {
+    props.addUser(user);
   }
 
   return( 
     <AppContainer title={translation.user.moduleTitle}>
       <div className="PageContent">
         <UserFilter handleShowButtonClick={handleShowButtonClick} />
-        <div className="ButtonPanel" style={{visibility: state.buttonAndDataVisibility}}>
+        <div className="ButtonPanel" style={{visibility: buttonAndDataVisibility}}>
           <CommonButton onClick={handleNewUserButtonClick}>{translation.user.newUser}</CommonButton>
           <CommonButton>{translation.user.edit}</CommonButton>
           <CommonButton>{translation.user.withSelected}</CommonButton>
         </div>
-        <div className="DataPanel" style={{visibility: state.buttonAndDataVisibility}}>
+        <div className="DataPanel" style={{visibility: buttonAndDataVisibility}}>
           <CommonDataGrid columns={columns} rows={users} />
         </div>
 
-        <UserEditor
-          user={{}}
-          open={state.editUser}
-          onClose={handleCloseUserEditor}
-        />
+        {editUser ? (
+          <UserEditor
+            user={user}
+            open={true}
+            onClose={handleCloseUserEditor}
+            isSavingUser={isSavingUser}
+            handleSaveUser={handleSaveUser}
+          />
+        ) : ""}
 
       </div>
     </AppContainer>
@@ -77,11 +88,17 @@ const UserAccounts = (props) => {
 
 UserAccounts.propTypes = {
   getUsers: PropTypes.func.isRequired,
-  users: PropTypes.object.isRequired
+  users: PropTypes.object.isRequired,
+  addUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  users: state.users
+  users: state.users,
+  buttonAndDataVisibility: state.buttonAndDataVisibility,
+  editUser: state.editUser,
+  isSavingUser: state.isSavingUser
 });
 
-export default connect(mapStateToProps, { getUsers })(withRouter(UserAccounts));
+export default connect(mapStateToProps, {
+  getUsers, addUser, setButtonAndDataVisibility, setEditUser, setSavingUser
+})(withRouter(UserAccounts));

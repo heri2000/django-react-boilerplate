@@ -1,11 +1,23 @@
 import axios from "axios";
 import { toastOnError } from "../../utils/Utils";
-import { GET_USERS, ADD_USER, DELETE_USER, UPDATE_USER } from "./UserTypes";
+import {
+  GET_USERS,
+  ADD_USER,
+  UPDATE_USER,
+  DELETE_USER,
+  SET_BUTTON_AND_DATA_VISIBILITY,
+  SET_EDIT_USER,
+  SET_SAVING_USER
+} from "./UserTypes";
 
 export const getUsers = (filter) => dispatch => {
   axios
     .get("/api/v1/userlist/?f=" + filter)
     .then(response => {
+      dispatch({
+        type: SET_BUTTON_AND_DATA_VISIBILITY,
+        payload: "visible"
+      });
       dispatch({
         type: GET_USERS,
         payload: response.data
@@ -17,6 +29,10 @@ export const getUsers = (filter) => dispatch => {
 };
 
 export const addUser = user => dispatch => {
+  dispatch({
+    type: SET_SAVING_USER,
+    payload: true
+  });
   axios
     .post("/api/v1/userlist/", user)
     .then(response => {
@@ -24,8 +40,20 @@ export const addUser = user => dispatch => {
         type: ADD_USER,
         payload: response.data
       });
+      dispatch({
+        type: SET_SAVING_USER,
+        payload: false
+      });
+      dispatch({
+        type: SET_EDIT_USER,
+        payload: false
+      });
     })
     .catch(error => {
+      dispatch({
+        type: SET_SAVING_USER,
+        payload: false
+      });
       toastOnError(error);
     });
 };
@@ -52,8 +80,38 @@ export const updateUser = (id, user) => dispatch => {
         type: UPDATE_USER,
         payload: response.data
       });
+      dispatch({
+        type: SET_EDIT_USER,
+        payload: false
+      });
     })
     .catch(error => {
+      dispatch({
+        type: SET_SAVING_USER,
+        payload: false
+      });
       toastOnError(error);
     });
 };
+
+
+export const setButtonAndDataVisibility = (visibility) => dispatch => {
+  dispatch({
+    type: SET_BUTTON_AND_DATA_VISIBILITY,
+    payload: visibility
+  });
+};
+
+export const setEditUser = (editUser) => dispatch => {
+  dispatch({
+    type: SET_EDIT_USER,
+    payload: editUser
+  });
+}
+
+export const setSavingUser = (isSavingUser) => dispatch => {
+  dispatch({
+    type: SET_SAVING_USER,
+    payload: isSavingUser
+  });
+}

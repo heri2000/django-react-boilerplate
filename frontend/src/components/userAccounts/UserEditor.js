@@ -1,8 +1,4 @@
 import { useState } from 'react'
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { deleteUser, updateUser } from "./UserActions";
 import {
   FormControlLabel,
   FormGroup,
@@ -26,11 +22,11 @@ const defaultUser = {
   is_active: true
 };
 
-const UserEditor = ({user, open, onClose}) => {
+const UserEditor = ({user, open, onClose, isSavingUser, handleSaveUser}) => {
   const translation = H_GetTranslation();
+
   const [state, setState] = useState({
-    isSavingData: false,
-    user: defaultUser,
+    user: (user === null ? defaultUser : user),
   });
 
   const handleChange = (event) => {
@@ -45,12 +41,6 @@ const UserEditor = ({user, open, onClose}) => {
     });
   }
 
-  const handleSaveData = () => {
-    setState({...state, isSavingData: true});
-    setTimeout(() => { setState({isSavingData: false, user: defaultUser}); onClose(); }, 2000);
-    console.log(state);
-  }
-
   const style1 = { marginBottom: "0.75em" };
 
   const content = (
@@ -63,7 +53,7 @@ const UserEditor = ({user, open, onClose}) => {
           label={translation.user.username}
           fullWidth={true}
           style={style1}
-          disabled={state.isSavingData}
+          disabled={isSavingUser}
           autoFocus
         />
       </div>
@@ -75,7 +65,7 @@ const UserEditor = ({user, open, onClose}) => {
           label={translation.user.email}
           fullWidth={true}
           style={style1}
-          disabled={state.isSavingData}
+          disabled={isSavingUser}
         />
       </div>
       <div>
@@ -86,7 +76,7 @@ const UserEditor = ({user, open, onClose}) => {
           label={translation.user.first_name}
           fullWidth={true}
           style={style1}
-          disabled={state.isSavingData}
+          disabled={isSavingUser}
         />
       </div>
       <div>
@@ -97,7 +87,7 @@ const UserEditor = ({user, open, onClose}) => {
           label={translation.user.last_name}
           fullWidth={true}
           style={style1}
-          disabled={state.isSavingData}
+          disabled={isSavingUser}
         />
       </div>
       <FormGroup row>
@@ -111,7 +101,7 @@ const UserEditor = ({user, open, onClose}) => {
             />
           }
           label={translation.user.is_staff}
-          disabled={state.isSavingData}
+          disabled={isSavingUser}
         />
       </FormGroup>
       <FormGroup row>
@@ -125,7 +115,7 @@ const UserEditor = ({user, open, onClose}) => {
             />
           }
           label={translation.user.is_superuser}
-          disabled={state.isSavingData}
+          disabled={isSavingUser}
         />
       </FormGroup>
       <FormGroup row>
@@ -139,7 +129,7 @@ const UserEditor = ({user, open, onClose}) => {
             />
           }
           label={translation.user.is_active}
-          disabled={state.isSavingData}
+          disabled={isSavingUser}
         />
       </FormGroup>
     </div>
@@ -147,8 +137,8 @@ const UserEditor = ({user, open, onClose}) => {
 
   const actions = (
     <div>
-      <CommonButton onClick={onClose} variant="text" disabled={state.isSavingData}>{translation.user.cancel}</CommonButton>
-      <CommonButton onClick={handleSaveData} color="primary" disabled={state.isSavingData}>{translation.user.save}</CommonButton>
+      <CommonButton onClick={onClose} variant="text" disabled={isSavingUser}>{translation.user.cancel}</CommonButton>
+      <CommonButton onClick={() => {handleSaveUser(state.user)}} color="primary" disabled={isSavingUser}>{translation.user.save}</CommonButton>
     </div>
   );
 
@@ -156,7 +146,6 @@ const UserEditor = ({user, open, onClose}) => {
     <div>
       <CommonDraggableDialog
         open={open}
-        onClose={onClose}
         title={translation.user.newUser}
         content={content}
         actions={actions}
@@ -166,11 +155,4 @@ const UserEditor = ({user, open, onClose}) => {
   );
 }
 
-UserEditor.propTypes = {
-  user: PropTypes.object.isRequired
-};
-const mapStateToProps = state => ({});
-
-export default connect(mapStateToProps, {
-  deleteUser, updateUser
-})(withRouter(UserEditor));
+export default UserEditor;

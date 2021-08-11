@@ -1,6 +1,17 @@
-import { GET_USERS, ADD_USER, UPDATE_USER, DELETE_USER } from "./UserTypes";
+import {
+  GET_USERS,
+  ADD_USER,
+  UPDATE_USER,
+  DELETE_USER,
+  SET_BUTTON_AND_DATA_VISIBILITY,
+  SET_EDIT_USER,
+  SET_SAVING_USER
+} from "./UserTypes";
 
 const initialState = {
+  buttonAndDataVisibility: "hidden",
+  editUser: false,
+  isSavingUser: false,
   users: []
 };
 
@@ -32,6 +43,21 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         users: updatedUsers
       };
+    case SET_BUTTON_AND_DATA_VISIBILITY:
+      return {
+        ...state,
+        buttonAndDataVisibility: action.payload
+      };
+    case SET_EDIT_USER:
+      return {
+        ...state,
+        editUser: action.payload
+      }
+    case SET_SAVING_USER:
+      return {
+        ...state,
+        isSavingUser: action.payload
+      }
     default:
       return state;
   }

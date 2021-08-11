@@ -11,5 +11,5 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     def get_queryset(self):
         filter = self.request.GET['f']
-        return self.queryset.filter(username__icontains=filter)
+        return self.queryset.filter(username__icontains=filter).order_by("username")
         
