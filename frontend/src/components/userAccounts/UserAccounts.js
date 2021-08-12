@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+
 import {
   getUsers,
   addUser,
@@ -8,6 +10,7 @@ import {
   setEditUser,
   setSavingUser
 } from "./UserActions";
+import MessageDialog1 from "./MessageDialog1";
 
 import {
   CommonButton,
@@ -39,15 +42,50 @@ const UserAccounts = (props) => {
   const { editUser } = props.users;
   const { isSavingUser } = props.users;
   const { users } = props.users;
-  let user = null;
+  
+  const defaultUser = {
+    username: "",
+    email: "",
+    first_name: "",
+    last_name: "",
+    is_staff: true,
+    is_superuser: false,
+    is_active: true
+  };
+  
+  const [state, setState] = useState({
+    showMessage1: false,
+    message1: "",
+    gridSelectionModel: [],
+    user: defaultUser
+  });
 
   const handleShowButtonClick = (filter) => {
     props.getUsers(filter);
   }
 
   const handleNewUserButtonClick = () => {
-    user = null;
+    setState({...state, user: defaultUser});
     props.setEditUser(true);
+  }
+
+  const handleEditUserButtonClick = () => {
+    if (state.gridSelectionModel.length === 0) {
+      setState({
+        ...state,
+        message1: translation.global.pleaseSelectOneRowToEdit,
+        showMessage1: true
+      });
+    } else if (state.gridSelectionModel.length > 1) {
+      setState({
+        ...state,
+        message1: translation.global.cannotEditMoreThanOneRow,
+        showMessage1: true
+      });
+    }  else {
+      setState({...state, user: {username: "blah"}});
+      props.setEditUser(true);
+    }
   }
 
   const handleCloseUserEditor = () => {
@@ -58,27 +96,56 @@ const UserAccounts = (props) => {
     props.addUser(user);
   }
 
+  const handleUserEditorChange = (event) => {
+    const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
+    const user = state.user;
+    setState({
+      ...state,
+      user: {
+        ...user,
+        [event.target.name]: value,
+      }
+    });
+  }
+
+  const handleSelectionModelChange = (model) => {
+    setState({...state, gridSelectionModel: model});
+  }
+
+  const handleCloseMessageDialog1 = () => {
+    setState({...state, showMessage1: false});
+  }
+
   return( 
     <AppContainer title={translation.user.moduleTitle}>
       <div className="PageContent">
         <UserFilter handleShowButtonClick={handleShowButtonClick} />
         <div className="ButtonPanel" style={{visibility: buttonAndDataVisibility}}>
           <CommonButton onClick={handleNewUserButtonClick}>{translation.user.newUser}</CommonButton>
-          <CommonButton>{translation.user.edit}</CommonButton>
+          <CommonButton onClick={handleEditUserButtonClick}>{translation.user.edit}</CommonButton>
           <CommonButton>{translation.user.withSelected}</CommonButton>
         </div>
         <div className="DataPanel" style={{visibility: buttonAndDataVisibility}}>
-          <CommonDataGrid columns={columns} rows={users} />
+          <CommonDataGrid
+            columns={columns}
+            rows={users}
+            selectionModel={state.gridSelectionModel}
+            onSelectionModelChange={handleSelectionModelChange}
+          />
         </div>
 
         {editUser ? (
           <UserEditor
-            user={user}
-            open={true}
+            user={state.user}
+            onChange={handleUserEditorChange}
             onClose={handleCloseUserEditor}
             isSavingUser={isSavingUser}
             handleSaveUser={handleSaveUser}
           />
+        ) : ""}
+        
+        {state.showMessage1 ? (
+          <MessageDialog1 message={state.message1} onClose={handleCloseMessageDialog1} />
         ) : ""}
 
       </div>
