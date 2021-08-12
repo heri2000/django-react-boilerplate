@@ -4,7 +4,10 @@
     "mainMenu": "Main Menu",
     "language": "Language",
     "logout": "Logout",
-    "noData": "No data"
+    "noData": "No data",
+    "ok": "OK",
+    "pleaseSelectOneRowToEdit": "Please select one row to edit.",
+    "cannotEditMoreThanOneRow": "Cannot edit more than one row. Please select only one row."
   },
   "login": {
     "moduleTitle": "Login",

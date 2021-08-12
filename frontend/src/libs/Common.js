@@ -67,10 +67,10 @@ export const CommonDataGrid = (props) => {
   return(
     <DataGrid
       components={{ NoRowsOverlay: noRowsOverlay }}
-      pageSize={25}
-      checkboxSelection={true}
+      autoPageSize
+      checkboxSelection
       density="compact"
-      autoHeight={true}
+      autoHeight
       {...props}
     />
   );
