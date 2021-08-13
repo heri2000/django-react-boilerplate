@@ -1,4 +1,4 @@
-# backend/server/apps/accounts/serializers.py
+# backend/server/apps/userAccounts/serializers.py
 
 from django.contrib.auth import authenticate, get_user_model
 from djoser.conf import settings
@@ -26,6 +26,11 @@ class CustomTokenCreateSerializer(TokenCreateSerializer):
         self.fail("invalid_credentials")
 
 class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["id", "username", "first_name", "last_name", "password", "email", "is_staff", "is_superuser", "is_active", "date_joined", "last_login"]
+
+class UserSerializerNoPassword(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "username", "first_name", "last_name", "email", "is_staff", "is_superuser", "is_active", "date_joined", "last_login"]
