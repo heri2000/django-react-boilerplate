@@ -4,13 +4,15 @@ import {
   UPDATE_USER,
   DELETE_USER,
   SET_BUTTON_AND_DATA_VISIBILITY,
-  SET_EDIT_USER,
+  SET_EDIT_NEW_USER,
+  SET_EDIT_EXISTING_USER,
   SET_SAVING_USER
 } from "./UserTypes";
 
 const initialState = {
   buttonAndDataVisibility: "hidden",
-  editUser: false,
+  editNewUser: false,
+  editExistingUser: false,
   isSavingUser: false,
   users: []
 };
@@ -48,10 +50,15 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         buttonAndDataVisibility: action.payload
       };
-    case SET_EDIT_USER:
+    case SET_EDIT_NEW_USER:
       return {
         ...state,
-        editUser: action.payload
+        editNewUser: action.payload
+      }
+    case SET_EDIT_EXISTING_USER:
+      return {
+        ...state,
+        editExistingUser: action.payload
       }
     case SET_SAVING_USER:
       return {

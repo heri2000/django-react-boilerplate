@@ -6,13 +6,14 @@ import {
   UPDATE_USER,
   DELETE_USER,
   SET_BUTTON_AND_DATA_VISIBILITY,
-  SET_EDIT_USER,
+  SET_EDIT_NEW_USER,
+  SET_EDIT_EXISTING_USER,
   SET_SAVING_USER
 } from "./UserTypes";
 
 export const getUsers = (filter) => dispatch => {
   axios
-    .get("/api/v1/userlist/?f=" + filter)
+    .get("/api/v1/userlist/", {params: {f: filter}})
     .then(response => {
       dispatch({
         type: SET_BUTTON_AND_DATA_VISIBILITY,
@@ -45,7 +46,7 @@ export const addUser = user => dispatch => {
         payload: false
       });
       dispatch({
-        type: SET_EDIT_USER,
+        type: SET_EDIT_NEW_USER,
         payload: false
       });
     })
@@ -60,7 +61,7 @@ export const addUser = user => dispatch => {
 
 export const deleteUser = id => dispatch => {
   axios
-    .delete(`/api/v1/userlist/${id}/`)
+    .delete(`/api/v1/users/${id}/`)
     .then(response => {
       dispatch({
         type: DELETE_USER,
@@ -81,7 +82,11 @@ export const updateUser = (id, user) => dispatch => {
         payload: response.data
       });
       dispatch({
-        type: SET_EDIT_USER,
+        type: SET_SAVING_USER,
+        payload: false
+      });
+      dispatch({
+        type: SET_EDIT_EXISTING_USER,
         payload: false
       });
     })
@@ -102,10 +107,17 @@ export const setButtonAndDataVisibility = (visibility) => dispatch => {
   });
 };
 
-export const setEditUser = (editUser) => dispatch => {
+export const setEditNewUser = (editNewUser) => dispatch => {
   dispatch({
-    type: SET_EDIT_USER,
-    payload: editUser
+    type: SET_EDIT_NEW_USER,
+    payload: editNewUser
+  });
+}
+
+export const setEditExistingUser = (editExistingUser) => dispatch => {
+  dispatch({
+    type: SET_EDIT_EXISTING_USER,
+    payload: editExistingUser
   });
 }
 

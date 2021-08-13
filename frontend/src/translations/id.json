@@ -6,6 +6,7 @@
     "logout": "Keluar",
     "noData": "Tidak ada data",
     "ok": "OK",
+    "withSelected": "Untuk yang dipilih ...",
     "pleaseSelectOneRowToEdit": "Mohon pilih satu baris untuk diubah.",
     "cannotEditMoreThanOneRow": "Tidak dapat mengubah lebih dari satu baris. Mohon pilih satu baris saja."
   },
@@ -37,22 +38,24 @@
     "moduleTitle": "Menu Utama"
   },
   "user": {
-    "moduleTitle": "Pengguna",
-    "newUser": "Pengguna Baru",
+    "moduleTitle": "User / Pengguna",
+    "newUser": "User Baru",
     "edit": "Ubah",
     "editUser": "Ubah User",
     "filterUserNameEmailFirstNameLastName": "Filter: Nama User / Email / Nama Depan / Nama Belakang",
     "show": "Tampilkan",
     "cancel": "Batal",
     "save": "Simpan",
-    "withSelected": "Dengan yang dipilih ...",
-    "username": "Nama Pengguna",
+    "editingAdminNotAllowed": "Tidak diperbolehkan mengubah user Admin.",
+    "changePassword": "Ubah Password",
+    "username": "Nama User",
     "email": "Email",
     "first_name": "Nama Depan",
     "last_name": "Nama Belakang",
     "is_staff": "Staff",
     "is_superuser": "Super User",
-    "is_active": "Aktif"
+    "is_active": "Aktif",
+    "password": "Password"
   },
   "noMatchPage": {
     "moduleTitle": "404",

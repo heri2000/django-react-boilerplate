@@ -2,7 +2,8 @@ import { useState } from 'react'
 import {
   FormControlLabel,
   FormGroup,
-  Switch
+  Checkbox,
+  Switch,
 } from '@material-ui/core';
 
 import {
@@ -12,14 +13,33 @@ import {
 } from "../../libs/Common";
 import { H_GetTranslation } from "../../libs/Libs";
 
-const UserEditor = ({user, onChange, onClose, isSavingUser, handleSaveUser}) => {
+const UserEditor = ({
+    user,
+    editExistingUser,
+    onChange,
+    onClose,
+    isSavingUser,
+    handleSaveUser
+  }) => {
   const translation = H_GetTranslation();
+
+  const [state, setState] = useState({
+    changePassword: !editExistingUser
+  });
+
+  const onChangeLocal = (event) => {
+    const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
+    setState({
+      ...state,
+      [event.target.name]: value,
+    });
+  }
 
   const style1 = { marginBottom: "0.75em" };
 
   const content = (
-    <div>
-      <div>
+    <div className="UserEditorContentPanel_1">
+      <div className="UserEditorContentPanel_2">
         <CommonTextField
           name="username"
           value={user.username}
@@ -30,8 +50,6 @@ const UserEditor = ({user, onChange, onClose, isSavingUser, handleSaveUser}) => 
           disabled={isSavingUser}
           autoFocus
         />
-      </div>
-      <div>
         <CommonTextField
           name="email"
           value={user.email}
@@ -41,8 +59,6 @@ const UserEditor = ({user, onChange, onClose, isSavingUser, handleSaveUser}) => 
           style={style1}
           disabled={isSavingUser}
         />
-      </div>
-      <div>
         <CommonTextField
           name="first_name"
           value={user.first_name}
@@ -52,8 +68,6 @@ const UserEditor = ({user, onChange, onClose, isSavingUser, handleSaveUser}) => 
           style={style1}
           disabled={isSavingUser}
         />
-      </div>
-      <div>
         <CommonTextField
           name="last_name"
           value={user.last_name}
@@ -64,48 +78,79 @@ const UserEditor = ({user, onChange, onClose, isSavingUser, handleSaveUser}) => 
           disabled={isSavingUser}
         />
       </div>
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Switch
-              name="is_staff"
-              color="primary"
-              checked={user.is_staff}
+
+      <div className="UserEditorContentPanel_3">
+        <FormGroup row>
+          <FormControlLabel
+            control={
+              <Switch
+                name="is_staff"
+                color="primary"
+                checked={user.is_staff}
+                onChange={onChange}
+              />
+            }
+            label={translation.user.is_staff}
+            disabled={isSavingUser}
+          />
+        </FormGroup>
+        <FormGroup row>
+          <FormControlLabel
+            control={
+              <Switch
+                name="is_superuser"
+                color="primary"
+                checked={user.is_superuser}
+                onChange={onChange}
+              />
+            }
+            label={translation.user.is_superuser}
+            disabled={isSavingUser}
+          />
+        </FormGroup>
+        <FormGroup row>
+          <FormControlLabel
+            control={
+              <Switch
+                name="is_active"
+                color="primary"
+                checked={user.is_active}
+                onChange={onChange}
+              />
+            }
+            label={translation.user.is_active}
+            disabled={isSavingUser}
+          />
+        </FormGroup>
+        <FormGroup row>
+          <FormControlLabel
+            control={
+              <Checkbox
+                name="changePassword"
+                color="primary"
+                checked={state.changePassword}
+                onChange={onChangeLocal}
+              />
+            }
+            label={translation.user.changePassword}
+            disabled={isSavingUser || !editExistingUser}
+          />
+        </FormGroup>
+        {state.changePassword ?
+          <div>
+            <CommonTextField
+              name="password"
+              type="password"
+              value={user.password}
               onChange={onChange}
+              label={translation.user.password}
+              fullWidth={true}
+              style={style1}
+              disabled={isSavingUser}
             />
-          }
-          label={translation.user.is_staff}
-          disabled={isSavingUser}
-        />
-      </FormGroup>
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Switch
-              name="is_superuser"
-              color="primary"
-              checked={user.is_superuser}
-              onChange={onChange}
-            />
-          }
-          label={translation.user.is_superuser}
-          disabled={isSavingUser}
-        />
-      </FormGroup>
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Switch
-              name="is_active"
-              color="primary"
-              checked={user.is_active}
-              onChange={onChange}
-            />
-          }
-          label={translation.user.is_active}
-          disabled={isSavingUser}
-        />
-      </FormGroup>
+          </div>
+        : "" }
+      </div>
     </div>
   );
 
@@ -120,10 +165,10 @@ const UserEditor = ({user, onChange, onClose, isSavingUser, handleSaveUser}) => 
     <div>
       <CommonDraggableDialog
         open={true}
-        title={translation.user.newUser}
+        title={editExistingUser ? translation.user.editUser : translation.user.newUser}
         content={content}
         actions={actions}
-        maxWidth="xs"
+        maxWidth="md"
       />
     </div>
   );

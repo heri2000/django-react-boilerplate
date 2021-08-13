@@ -6,6 +6,7 @@
     "logout": "Logout",
     "noData": "No data",
     "ok": "OK",
+    "withSelected": "With selected ...",
     "pleaseSelectOneRowToEdit": "Please select one row to edit.",
     "cannotEditMoreThanOneRow": "Cannot edit more than one row. Please select only one row."
   },
@@ -45,14 +46,16 @@
     "show": "Show",
     "cancel": "Cancel",
     "save": "Save",
-    "withSelected": "With selected ...",
+    "editingAdminNotAllowed": "Editing Admin user is not allowed.",
+    "changePassword": "Change Password",
     "username": "User Name",
     "email": "Email",
     "first_name": "First Name",
     "last_name": "Last Name",
     "is_staff": "Staff",
     "is_superuser": "Super User",
-    "is_active": "Active"
+    "is_active": "Active",
+    "password": "Password"
   },
   "noMatchPage": {
     "moduleTitle": "404",

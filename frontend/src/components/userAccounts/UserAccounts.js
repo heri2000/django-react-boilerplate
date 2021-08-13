@@ -6,8 +6,10 @@ import { withRouter } from "react-router-dom";
 import {
   getUsers,
   addUser,
+  updateUser,
   setButtonAndDataVisibility,
-  setEditUser,
+  setEditNewUser,
+  setEditExistingUser,
   setSavingUser
 } from "./UserActions";
 import MessageDialog1 from "./MessageDialog1";
@@ -39,7 +41,8 @@ const UserAccounts = (props) => {
   ];
   
   const { buttonAndDataVisibility } = props.users;
-  const { editUser } = props.users;
+  const { editNewUser } = props.users;
+  const { editExistingUser } = props.users;
   const { isSavingUser } = props.users;
   const { users } = props.users;
   
@@ -66,7 +69,7 @@ const UserAccounts = (props) => {
 
   const handleNewUserButtonClick = () => {
     setState({...state, user: defaultUser});
-    props.setEditUser(true);
+    props.setEditNewUser(true);
   }
 
   const handleEditUserButtonClick = () => {
@@ -83,17 +86,33 @@ const UserAccounts = (props) => {
         showMessage1: true
       });
     }  else {
-      setState({...state, user: {username: "blah"}});
-      props.setEditUser(true);
+      let id = state.gridSelectionModel[0];
+      if (id === 1) {
+          setState({
+            ...state,
+            message1: translation.user.editingAdminNotAllowed,
+            showMessage1: true
+          });
+      } else {
+        let user = users.find(user => user.id === id);
+        user.password = "";
+        setState({...state, user: user});
+        props.setEditExistingUser(true);
+      }
     }
   }
 
   const handleCloseUserEditor = () => {
-    props.setEditUser(false);
+    props.setEditNewUser(false);
+    props.setEditExistingUser(false);
   }
 
   const handleSaveUser = (user) => {
-    props.addUser(user);
+    if (editExistingUser) {
+      props.updateUser(user.id, user);
+    } else {
+      props.addUser(user);
+    }
   }
 
   const handleUserEditorChange = (event) => {
@@ -122,8 +141,8 @@ const UserAccounts = (props) => {
         <UserFilter handleShowButtonClick={handleShowButtonClick} />
         <div className="ButtonPanel" style={{visibility: buttonAndDataVisibility}}>
           <CommonButton onClick={handleNewUserButtonClick}>{translation.user.newUser}</CommonButton>
-          <CommonButton onClick={handleEditUserButtonClick}>{translation.user.edit}</CommonButton>
-          <CommonButton>{translation.user.withSelected}</CommonButton>
+          <CommonButton onClick={handleEditUserButtonClick}>{translation.user.editUser}</CommonButton>
+          <CommonButton>{translation.global.withSelected}</CommonButton>
         </div>
         <div className="DataPanel" style={{visibility: buttonAndDataVisibility}}>
           <CommonDataGrid
@@ -134,9 +153,10 @@ const UserAccounts = (props) => {
           />
         </div>
 
-        {editUser ? (
+        {editNewUser || editExistingUser ? (
           <UserEditor
             user={state.user}
+            editExistingUser={editExistingUser}
             onChange={handleUserEditorChange}
             onClose={handleCloseUserEditor}
             isSavingUser={isSavingUser}
@@ -162,10 +182,11 @@ UserAccounts.propTypes = {
 const mapStateToProps = state => ({
   users: state.users,
   buttonAndDataVisibility: state.buttonAndDataVisibility,
-  editUser: state.editUser,
+  editNewUser: state.editNewUser,
+  editExistingUser: state.editExistingUser,
   isSavingUser: state.isSavingUser
 });
 
 export default connect(mapStateToProps, {
-  getUsers, addUser, setButtonAndDataVisibility, setEditUser, setSavingUser
+  getUsers, addUser, updateUser, setButtonAndDataVisibility, setEditNewUser, setEditExistingUser, setSavingUser
 })(withRouter(UserAccounts));
