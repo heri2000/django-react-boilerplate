@@ -19,7 +19,7 @@ class UserViewSet(viewsets.ModelViewSet):
     
     def list(self, request):
         filter = request.GET['f']
-        queryset = self.queryset.filter(username__icontains=filter)
+        queryset = self.queryset.filter(username__icontains=filter).order_by('username')
         serializer = UserSerializerNoPassword(queryset, many=True)
         return Response(serializer.data)
     
