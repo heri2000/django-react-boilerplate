@@ -2,17 +2,17 @@ import { useState } from 'react'
 import { H_GetTranslation } from "../../libs/Libs";
 import { CommonTextField, CommonButton } from "../../libs/Common";
 
-const UserFilter = ({ handleShowButtonClick }) => {
+const UserFilter = ({ handleShowClick }) => {
   const [filter, setFilter] = useState("");
   
   const handleFilterKeyPress = (e) => {
     if (e.key === "Enter") {
-      handleShowButtonClick(filter);
+      handleShowClick(filter);
     }
   }
 
   const handleClick = () => {
-    handleShowButtonClick(filter);
+    handleShowClick(filter);
   }
 
   const translation = H_GetTranslation();

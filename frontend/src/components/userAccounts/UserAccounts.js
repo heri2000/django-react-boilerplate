@@ -63,16 +63,16 @@ const UserAccounts = (props) => {
     user: defaultUser
   });
 
-  const handleShowButtonClick = (filter) => {
+  const handleShowClick = (filter) => {
     props.getUsers(filter);
   }
 
-  const handleNewUserButtonClick = () => {
+  const handleNewUserClick = () => {
     setState({...state, user: defaultUser});
     props.setEditNewUser(true);
   }
 
-  const handleEditUserButtonClick = () => {
+  const handleEditUserClick = () => {
     if (state.gridSelectionModel.length === 0) {
       setState({
         ...state,
@@ -138,10 +138,10 @@ const UserAccounts = (props) => {
   return( 
     <AppContainer title={translation.user.moduleTitle}>
       <div className="PageContent">
-        <UserFilter handleShowButtonClick={handleShowButtonClick} />
+        <UserFilter handleShowClick={handleShowClick} />
         <div className="ButtonPanel" style={{visibility: buttonAndDataVisibility}}>
-          <CommonButton onClick={handleNewUserButtonClick}>{translation.user.newUser}</CommonButton>
-          <CommonButton onClick={handleEditUserButtonClick}>{translation.user.editUser}</CommonButton>
+          <CommonButton onClick={handleNewUserClick}>{translation.user.newUser}</CommonButton>
+          <CommonButton onClick={handleEditUserClick}>{translation.user.editUser}</CommonButton>
           <CommonButton>{translation.global.withSelected}</CommonButton>
         </div>
         <div className="DataPanel" style={{visibility: buttonAndDataVisibility}}>
