@@ -130,13 +130,13 @@ function LanguageAndLogout(props) {
           color="primary"
           aria-label="Language"
           title="Language"
-          aria-controls="language-selection-menu"
+          aria-controls="languageSelectionMenu"
           onClick={handleLanguageButtonClick}
         >
           <img src={flagImg} alt={translation.global.language} title={translation.global.language} />
         </Button>
         <Menu
-          id="language-selection-menu"
+          id="languageSelectionMenu"
           anchorEl={anchorEl}
           keepMounted
           open={Boolean(anchorEl)}

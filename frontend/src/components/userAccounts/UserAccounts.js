@@ -2,6 +2,10 @@ import { useState } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import {
+  Menu,
+  MenuItem,
+} from "@material-ui/core";
 
 import {
   getUsers,
@@ -55,48 +59,47 @@ const UserAccounts = (props) => {
     is_superuser: false,
     is_active: true
   };
-  
-  const [state, setState] = useState({
-    showMessage1: false,
-    message1: "",
-    gridSelectionModel: [],
-    user: defaultUser
-  });
+
+  const [showMessage1, setShowMessage1] = useState(false);
+  const [message1, setMessage1] = useState("");
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [gridSelectionModel, setGridSelectionModel] = useState([]);
+  const [user, setUser] = useState(defaultUser);
 
   const handleShowClick = (filter) => {
     props.getUsers(filter);
   }
 
   const handleNewUserClick = () => {
-    setState({...state, user: defaultUser});
+    setUser(defaultUser);
     props.setEditNewUser(true);
   }
 
+  const handleWithSelectedClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  }
+
+  const handleWithSelectedClose = () => {
+    setAnchorEl(null);
+  }
+
   const handleEditUserClick = () => {
-    if (state.gridSelectionModel.length === 0) {
-      setState({
-        ...state,
-        message1: translation.global.pleaseSelectOneRowToEdit,
-        showMessage1: true
-      });
-    } else if (state.gridSelectionModel.length > 1) {
-      setState({
-        ...state,
-        message1: translation.global.cannotEditMoreThanOneRow,
-        showMessage1: true
-      });
+    handleWithSelectedClose();
+    if (gridSelectionModel.length === 0) {
+      setMessage1(translation.global.pleaseSelectOneRowToEdit);
+      setShowMessage1(true);
+    } else if (gridSelectionModel.length > 1) {
+      setMessage1(translation.global.cannotEditMoreThanOneRow);
+      setShowMessage1(true);
     }  else {
-      let id = state.gridSelectionModel[0];
+      let id = gridSelectionModel[0];
       if (id === 1) {
-          setState({
-            ...state,
-            message1: translation.user.editingAdminNotAllowed,
-            showMessage1: true
-          });
+        setMessage1(translation.global.editingAdminNotAllowed);
+        setShowMessage1(true);
       } else {
         let user = users.find(user => user.id === id);
         user.password = "";
-        setState({...state, user: user});
+        setUser(user);
         props.setEditExistingUser(true);
       }
     }
@@ -117,22 +120,15 @@ const UserAccounts = (props) => {
 
   const handleUserEditorChange = (event) => {
     const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
-    const user = state.user;
-    setState({
-      ...state,
-      user: {
-        ...user,
-        [event.target.name]: value,
-      }
-    });
+    setUser({...user, [event.target.name]: value});
   }
 
   const handleSelectionModelChange = (model) => {
-    setState({...state, gridSelectionModel: model});
+    setGridSelectionModel(model);
   }
 
   const handleCloseMessageDialog1 = () => {
-    setState({...state, showMessage1: false});
+    setShowMessage1(false);
   }
 
   return( 
@@ -141,21 +137,37 @@ const UserAccounts = (props) => {
         <UserFilter handleShowClick={handleShowClick} />
         <div className="ButtonPanel" style={{visibility: buttonAndDataVisibility}}>
           <CommonButton onClick={handleNewUserClick}>{translation.user.newUser}</CommonButton>
-          <CommonButton onClick={handleEditUserClick}>{translation.user.editUser}</CommonButton>
-          <CommonButton>{translation.global.withSelected}</CommonButton>
+          <CommonButton
+            aria-label={translation.global.withSelected}
+            aria-controls={"with-selected-menu"}
+            onClick={handleWithSelectedClick}
+          >
+            {translation.global.withSelected}
+          </CommonButton>
+          <Menu
+            id="with-selected-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleWithSelectedClose}
+          >
+            <MenuItem id="with-selected-menu-edit-user" onClick={() => {handleEditUserClick();}}>
+              {translation.user.editUser}
+            </MenuItem>
+          </Menu>
         </div>
         <div className="DataPanel" style={{visibility: buttonAndDataVisibility}}>
           <CommonDataGrid
             columns={columns}
             rows={users}
-            selectionModel={state.gridSelectionModel}
+            selectionModel={gridSelectionModel}
             onSelectionModelChange={handleSelectionModelChange}
           />
         </div>
 
         {editNewUser || editExistingUser ? (
           <UserEditor
-            user={state.user}
+            user={user}
             editExistingUser={editExistingUser}
             onChange={handleUserEditorChange}
             onClose={handleCloseUserEditor}
@@ -164,8 +176,8 @@ const UserAccounts = (props) => {
           />
         ) : ""}
         
-        {state.showMessage1 ? (
-          <MessageDialog1 message={state.message1} onClose={handleCloseMessageDialog1} />
+        {showMessage1 ? (
+          <MessageDialog1 message={message1} onClose={handleCloseMessageDialog1} />
         ) : ""}
 
       </div>
