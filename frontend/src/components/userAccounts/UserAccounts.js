@@ -15,7 +15,7 @@ import {
   setButtonAndDataVisibility,
   setEditNewUser,
   setEditExistingUser,
-  setBatchEditUser,
+  setBulkEditUser,
   setSavingUser
 } from "./UserActions";
 import MessageDialog1 from "./MessageDialog1";
@@ -29,7 +29,7 @@ import { H_GetTranslation } from "../../libs/Libs";
 import AppContainer from "../appContainer/AppContainer";
 import UserFilter from "./UserFilter";
 import UserEditor from "./UserEditor";
-import BatchEditor1 from "./BatchEditor1";
+import BulkEditor1 from "./BulkEditor1";
 
 import './UserAccounts.css';
 
@@ -50,7 +50,7 @@ const UserAccounts = (props) => {
   const { buttonAndDataVisibility } = props.users;
   const { editNewUser } = props.users;
   const { editExistingUser } = props.users;
-  const { batchEditUser } = props.users;
+  const { bulkEditUser } = props.users;
   const { isSavingUser } = props.users;
   const { users } = props.users;
   
@@ -67,7 +67,7 @@ const UserAccounts = (props) => {
   const [showMessage1, setShowMessage1] = useState(false);
   const [message1, setMessage1] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
-  const [batchEditorField, setBatchEditorField] = useState({name: "", type: "", value: ""});
+  const [bulkEditorField, setBulkEditorField] = useState({name: "", type: "", value: ""});
   const [gridSelectionModel, setGridSelectionModel] = useState([]);
   const [user, setUser] = useState(defaultUser);
 
@@ -136,7 +136,7 @@ const UserAccounts = (props) => {
     setGridSelectionModel(model);
   }
 
-  const handleShowBatchEditor = (fieldName) => {
+  const handleShowBulkEditor = (fieldName) => {
     let type = "";
     let value = "";
     if (fieldName === "first_name" || fieldName === "last_name") {
@@ -146,22 +146,22 @@ const UserAccounts = (props) => {
       type = "switch";
       value = false;
     }
-    setBatchEditorField({name: fieldName, type: type, value: value});
+    setBulkEditorField({name: fieldName, type: type, value: value});
     handleWithSelectedClose();
-    props.setBatchEditUser(true);
+    props.setBulkEditUser(true);
   }
 
-  const handleBatchEditorChange = (event) => {
+  const handleBulkEditorChange = (event) => {
     const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
-    setBatchEditorField({...batchEditorField, value: value});
+    setBulkEditorField({...bulkEditorField, value: value});
   }
 
-  const handleCloseBatchEditor = () => {
-    props.setBatchEditUser(false);
+  const handleCloseBulkEditor = () => {
+    props.setBulkEditUser(false);
   }
 
-  const handleBatchEditorSave = () => {
-    console.log(batchEditorField, gridSelectionModel);
+  const handleBulkEditorSave = () => {
+    console.log(bulkEditorField, gridSelectionModel);
   }
 
   return(
@@ -188,19 +188,19 @@ const UserAccounts = (props) => {
               {translation.userAccounts.editUser}
             </MenuItem>
             <Divider />
-            <MenuItem id="withSelectedMenuChangeFirstNameAtOnce" onClick={() => handleShowBatchEditor("first_name")}>
+            <MenuItem id="withSelectedMenuChangeFirstNameAtOnce" onClick={() => handleShowBulkEditor("first_name")}>
               {translation.userAccounts.changeFirstNameAtOnce}
             </MenuItem>
-            <MenuItem id="withSelectedMenuChangeLasttNameAtOnce" onClick={() => handleShowBatchEditor("last_name")}>
+            <MenuItem id="withSelectedMenuChangeLasttNameAtOnce" onClick={() => handleShowBulkEditor("last_name")}>
               {translation.userAccounts.changeLastNameAtOnce}
             </MenuItem>
-            <MenuItem id="withSelectedMenuChangeStaffAtOnce" onClick={() => handleShowBatchEditor("is_staff")}>
+            <MenuItem id="withSelectedMenuChangeStaffAtOnce" onClick={() => handleShowBulkEditor("is_staff")}>
               {translation.userAccounts.changeStaffAtOnce}
             </MenuItem>
-            <MenuItem id="withSelectedMenuChangeSuperUserAtOnce" onClick={() => handleShowBatchEditor("is_superuser")}>
+            <MenuItem id="withSelectedMenuChangeSuperUserAtOnce" onClick={() => handleShowBulkEditor("is_superuser")}>
               {translation.userAccounts.changeSuperUserAtOnce}
             </MenuItem>
-            <MenuItem id="withSelectedMenuChangeActiveAtOnce" onClick={() => handleShowBatchEditor("is_active")}>
+            <MenuItem id="withSelectedMenuChangeActiveAtOnce" onClick={() => handleShowBulkEditor("is_active")}>
               {translation.userAccounts.changeActiveAtOnce}
             </MenuItem>
           </Menu>
@@ -225,12 +225,12 @@ const UserAccounts = (props) => {
           />
         ) : ""}
 
-        {batchEditUser ? (
-          <BatchEditor1
-            field={batchEditorField}
-            onChange={handleBatchEditorChange}
-            onClose={handleCloseBatchEditor}
-            handleSave={handleBatchEditorSave}
+        {bulkEditUser ? (
+          <BulkEditor1
+            field={bulkEditorField}
+            onChange={handleBulkEditorChange}
+            onClose={handleCloseBulkEditor}
+            handleSave={handleBulkEditorSave}
           />
         ) : ""}
         
@@ -258,5 +258,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  getUsers, addUser, updateUser, setButtonAndDataVisibility, setEditNewUser, setEditExistingUser, setBatchEditUser, setSavingUser
+  getUsers, addUser, updateUser, setButtonAndDataVisibility, setEditNewUser, setEditExistingUser, setBulkEditUser, setSavingUser
 })(withRouter(UserAccounts));

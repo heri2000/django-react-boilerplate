@@ -7,7 +7,7 @@ import { CommonButton, CommonDraggableDialog, CommonTextField } from "../../libs
 
 import { H_GetTranslation } from "../../libs/Libs";
 
-const BatchEditor1 = ({ field, onChange, onClose, handleSave }) => {
+const BulkEditor1 = ({ field, onChange, onClose, handleSave }) => {
   const translation = H_GetTranslation();
   let content = "";
   if (field.type === "textfield") {
@@ -55,4 +55,4 @@ const BatchEditor1 = ({ field, onChange, onClose, handleSave }) => {
   );
 }
 
-export default BatchEditor1;
+export default BulkEditor1;
