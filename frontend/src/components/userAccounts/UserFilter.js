@@ -22,7 +22,7 @@ const UserFilter = ({ handleShowClick }) => {
       <CommonTextField
         className="FilterField"
         name="filter"
-        label={translation.user.filterUserNameEmailFirstNameLastName}
+        label={translation.userAccounts.filterUserNameEmailFirstNameLastName}
         autoFocus
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
@@ -34,7 +34,7 @@ const UserFilter = ({ handleShowClick }) => {
           onClick={handleClick}
           color="primary"
         >
-          {translation.user.show}
+          {translation.userAccounts.show}
         </CommonButton>
       </div>
     </div>

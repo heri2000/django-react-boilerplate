@@ -44,7 +44,7 @@ const UserEditor = ({
           name="username"
           value={user.username}
           onChange={onChange}
-          label={translation.user.username}
+          label={translation.userAccounts.username}
           fullWidth={true}
           style={style1}
           disabled={isSavingUser}
@@ -54,7 +54,7 @@ const UserEditor = ({
           name="email"
           value={user.email}
           onChange={onChange}
-          label={translation.user.email}
+          label={translation.userAccounts.email}
           fullWidth={true}
           style={style1}
           disabled={isSavingUser}
@@ -63,7 +63,7 @@ const UserEditor = ({
           name="first_name"
           value={user.first_name}
           onChange={onChange}
-          label={translation.user.first_name}
+          label={translation.userAccounts.first_name}
           fullWidth={true}
           style={style1}
           disabled={isSavingUser}
@@ -72,7 +72,7 @@ const UserEditor = ({
           name="last_name"
           value={user.last_name}
           onChange={onChange}
-          label={translation.user.last_name}
+          label={translation.userAccounts.last_name}
           fullWidth={true}
           style={style1}
           disabled={isSavingUser}
@@ -90,7 +90,7 @@ const UserEditor = ({
                 onChange={onChange}
               />
             }
-            label={translation.user.is_staff}
+            label={translation.userAccounts.is_staff}
             disabled={isSavingUser}
           />
         </FormGroup>
@@ -104,7 +104,7 @@ const UserEditor = ({
                 onChange={onChange}
               />
             }
-            label={translation.user.is_superuser}
+            label={translation.userAccounts.is_superuser}
             disabled={isSavingUser}
           />
         </FormGroup>
@@ -118,7 +118,7 @@ const UserEditor = ({
                 onChange={onChange}
               />
             }
-            label={translation.user.is_active}
+            label={translation.userAccounts.is_active}
             disabled={isSavingUser}
           />
         </FormGroup>
@@ -132,7 +132,7 @@ const UserEditor = ({
                 onChange={onChangeLocal}
               />
             }
-            label={translation.user.changePassword}
+            label={translation.userAccounts.changePassword}
             disabled={isSavingUser || !editExistingUser}
           />
         </FormGroup>
@@ -143,7 +143,7 @@ const UserEditor = ({
               type="password"
               value={user.password}
               onChange={onChange}
-              label={translation.user.password}
+              label={translation.userAccounts.password}
               fullWidth={true}
               style={style1}
               disabled={isSavingUser}
@@ -156,8 +156,8 @@ const UserEditor = ({
 
   const actions = (
     <div>
-      <CommonButton onClick={onClose} variant="text" disabled={isSavingUser}>{translation.user.cancel}</CommonButton>
-      <CommonButton onClick={() => {handleSaveUser(user)}} color="primary" disabled={isSavingUser}>{translation.user.save}</CommonButton>
+      <CommonButton onClick={onClose} variant="text" disabled={isSavingUser}>{translation.userAccounts.cancel}</CommonButton>
+      <CommonButton onClick={() => {handleSaveUser(user)}} color="primary" disabled={isSavingUser}>{translation.userAccounts.save}</CommonButton>
     </div>
   );
 
@@ -165,7 +165,7 @@ const UserEditor = ({
     <div>
       <CommonDraggableDialog
         open={true}
-        title={editExistingUser ? translation.user.editUser : translation.user.newUser}
+        title={editExistingUser ? translation.userAccounts.editUser : translation.userAccounts.newUser}
         content={content}
         actions={actions}
         maxWidth="md"

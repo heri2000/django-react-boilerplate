@@ -37,7 +37,7 @@
   "mainMenu": {
     "moduleTitle": "Menu Utama"
   },
-  "user": {
+  "userAccounts": {
     "moduleTitle": "User / Pengguna",
     "newUser": "User Baru",
     "edit": "Ubah",

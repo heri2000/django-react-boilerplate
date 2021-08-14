@@ -25,7 +25,7 @@ export default class MainMenu extends React.Component {
         <Container maxWidth="sm">
           <Link to={linkToNotes} target="_blank">Notes</Link>
           <br />
-          <Link to={linkToUser} target="_blank">{translation.user.moduleTitle}</Link>
+          <Link to={linkToUser} target="_blank">{translation.userAccounts.moduleTitle}</Link>
         </Container>
       </AppContainer>
     );

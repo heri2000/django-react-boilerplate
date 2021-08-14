@@ -32,16 +32,16 @@ import './UserAccounts.css';
 
 const UserAccounts = (props) => {
   const translation = H_GetTranslation();
-  document.title = getTabTitle(translation.user.moduleTitle);
+  document.title = getTabTitle(translation.userAccounts.moduleTitle);
 
   const columns = [
-    { field: 'username', headerName: translation.user.username, minWidth: 150, flex: 2, editable: false },
-    { field: 'email', headerName: translation.user.email, minWidth: 200, flex: 3, editable: false },
-    { field: 'first_name', headerName: translation.user.first_name, minWidth: 200, flex: 3, editable: false },
-    { field: 'last_name', headerName: translation.user.last_name, minWidth: 200, flex: 3, editable: false },
-    { field: 'is_staff', headerName: translation.user.is_staff, type: "boolean", minWidth: 150, flex: 0, editable: false },
-    { field: 'is_superuser', headerName: translation.user.is_superuser, type: "boolean", minWidth: 150, flex: 0, editable: false },
-    { field: 'is_active', headerName: translation.user.is_active, type: "boolean", minWidth: 150, flex: 0, editable: false },
+    { field: 'username', headerName: translation.userAccounts.username, minWidth: 150, flex: 2, editable: false },
+    { field: 'email', headerName: translation.userAccounts.email, minWidth: 200, flex: 3, editable: false },
+    { field: 'first_name', headerName: translation.userAccounts.first_name, minWidth: 200, flex: 3, editable: false },
+    { field: 'last_name', headerName: translation.userAccounts.last_name, minWidth: 200, flex: 3, editable: false },
+    { field: 'is_staff', headerName: translation.userAccounts.is_staff, type: "boolean", minWidth: 150, flex: 0, editable: false },
+    { field: 'is_superuser', headerName: translation.userAccounts.is_superuser, type: "boolean", minWidth: 150, flex: 0, editable: false },
+    { field: 'is_active', headerName: translation.userAccounts.is_active, type: "boolean", minWidth: 150, flex: 0, editable: false },
   ];
   
   const { buttonAndDataVisibility } = props.users;
@@ -132,11 +132,11 @@ const UserAccounts = (props) => {
   }
 
   return( 
-    <AppContainer title={translation.user.moduleTitle}>
+    <AppContainer title={translation.userAccounts.moduleTitle}>
       <div className="PageContent">
         <UserFilter handleShowClick={handleShowClick} />
         <div className="ButtonPanel" style={{visibility: buttonAndDataVisibility}}>
-          <CommonButton onClick={handleNewUserClick}>{translation.user.newUser}</CommonButton>
+          <CommonButton onClick={handleNewUserClick}>{translation.userAccounts.newUser}</CommonButton>
           <CommonButton
             aria-label={translation.global.withSelected}
             aria-controls={"with-selected-menu"}
@@ -152,7 +152,7 @@ const UserAccounts = (props) => {
             onClose={handleWithSelectedClose}
           >
             <MenuItem id="with-selected-menu-edit-user" onClick={() => {handleEditUserClick();}}>
-              {translation.user.editUser}
+              {translation.userAccounts.editUser}
             </MenuItem>
           </Menu>
         </div>

@@ -37,7 +37,7 @@
   "mainMenu": {
     "moduleTitle": "Main Menu"
   },
-  "user": {
+  "userAccounts": {
     "moduleTitle": "User",
     "newUser": "New User",
     "edit": "Edit",
