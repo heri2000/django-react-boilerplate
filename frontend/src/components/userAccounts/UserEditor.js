@@ -156,8 +156,8 @@ const UserEditor = ({
 
   const actions = (
     <div>
-      <CommonButton onClick={onClose} variant="text" disabled={isSavingUser}>{translation.userAccounts.cancel}</CommonButton>
-      <CommonButton onClick={() => {handleSaveUser(user)}} color="primary" disabled={isSavingUser}>{translation.userAccounts.save}</CommonButton>
+      <CommonButton onClick={onClose} variant="text" disabled={isSavingUser}>{translation.global.cancel}</CommonButton>
+      <CommonButton onClick={handleSaveUser} color="primary" disabled={isSavingUser}>{translation.global.save}</CommonButton>
     </div>
   );
 

@@ -8,6 +8,7 @@ import {
   SET_BUTTON_AND_DATA_VISIBILITY,
   SET_EDIT_NEW_USER,
   SET_EDIT_EXISTING_USER,
+  SET_BATCH_EDIT_USER,
   SET_SAVING_USER
 } from "./UserTypes";
 
@@ -118,6 +119,13 @@ export const setEditExistingUser = (editExistingUser) => dispatch => {
   dispatch({
     type: SET_EDIT_EXISTING_USER,
     payload: editExistingUser
+  });
+}
+
+export const setBatchEditUser = (batchEditUser) => dispatch => {
+  dispatch({
+    type: SET_BATCH_EDIT_USER,
+    payload: batchEditUser
   });
 }
 
