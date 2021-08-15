@@ -4,7 +4,6 @@ import { GET_NOTES, ADD_NOTE, DELETE_NOTE, UPDATE_NOTE } from "./NotesTypes";
 
 export const getNotes = () => dispatch => {
   axios
-    // .get("/api/v1/notes/?q")
     .get("/api/v1/notes/")
     .then(response => {
       dispatch({
