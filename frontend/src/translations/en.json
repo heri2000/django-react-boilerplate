@@ -47,6 +47,7 @@
     "filterUserNameEmailFirstNameLastName": "Filter: Username / Email / First Name / Last Name",
     "show": "Show",
     "editingAdminNotAllowed": "Editing Admin user is not allowed.",
+    "editingYourOwnUserNotAllowed": "Editing your own user is not allowed.",
     "changePassword": "Change password",
     "changeFirstNameAtOnce": "Change First Name at once",
     "changeLastNameAtOnce": "Change Last Name at once",

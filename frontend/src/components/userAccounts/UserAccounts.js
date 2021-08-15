@@ -98,12 +98,21 @@ const UserAccounts = (props) => {
       setMessage1(translation.global.cannotEditMoreThanOneRow);
       setShowMessage1(true);
     }  else {
-      let id = gridSelectionModel[0];
+      const id = gridSelectionModel[0];
       if (id === 1) {
         setMessage1(translation.userAccounts.editingAdminNotAllowed);
         setShowMessage1(true);
       } else {
-        let user = users.find(user => user.id === id);
+        const loggedInUser = JSON.parse(localStorage.getItem('user'));
+        const testLoggedInUserIsInList = users.find(user => user.username === loggedInUser.username);
+        if (testLoggedInUserIsInList !== undefined) {
+          if (testLoggedInUserIsInList.id === id) {
+            setMessage1(translation.userAccounts.editingYourOwnUserNotAllowed);
+            setShowMessage1(true);
+            return;
+          }
+        }
+        const user = users.find(user => user.id === id);
         user.password = "";
         setUser(user);
         props.setEditExistingUser(true);

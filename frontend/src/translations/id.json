@@ -47,6 +47,7 @@
     "filterUserNameEmailFirstNameLastName": "Filter: Nama User / Email / Nama Depan / Nama Belakang",
     "show": "Tampilkan",
     "editingAdminNotAllowed": "Tidak diperbolehkan mengubah user Admin.",
+    "editingYourOwnUserNotAllowed": "Tidak diperbolehkan mengubah user Anda sendiri.",
     "changePassword": "Ubah Password",
     "changeFirstNameAtOnce": "Ganti Nama Depan sekaligus",
     "changeLastNameAtOnce": "Ganti Nama Belakang sekaligus",
