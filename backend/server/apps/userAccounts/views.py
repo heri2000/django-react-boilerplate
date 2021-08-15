@@ -54,7 +54,7 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response(new_data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class UserAPI(APIView):
+class UserBulkAPI(APIView):
     queryset = User.objects.all()
 
     @classmethod
