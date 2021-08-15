@@ -7,7 +7,7 @@ import { CommonButton, CommonDraggableDialog, CommonTextField } from "../../libs
 
 import { H_GetTranslation } from "../../libs/Libs";
 
-const BulkEditor1 = ({ field, onChange, onClose, handleSave }) => {
+const BulkEditor1 = ({ field, onChange, onClose, isSavingUser, handleSave }) => {
   const translation = H_GetTranslation();
   let content = "";
   if (field.type === "textfield") {
@@ -18,6 +18,7 @@ const BulkEditor1 = ({ field, onChange, onClose, handleSave }) => {
         onChange={onChange}
         label={translation.userAccounts[field.name]}
         fullWidth={true}
+        disabled={isSavingUser}
         autoFocus
       />
     );
@@ -34,6 +35,7 @@ const BulkEditor1 = ({ field, onChange, onClose, handleSave }) => {
             />
           }
           label={translation.userAccounts[field.name]}
+          disabled={isSavingUser}
         />
       </div>
     );
@@ -45,8 +47,8 @@ const BulkEditor1 = ({ field, onChange, onClose, handleSave }) => {
         content={content}
         actions={(
           <div>
-            <CommonButton variant="text" onClick={onClose}>{translation.global.cancel}</CommonButton>
-            <CommonButton onClick={handleSave} color="primary">{translation.global.save}</CommonButton>
+            <CommonButton variant="text" disabled={isSavingUser} onClick={onClose}>{translation.global.cancel}</CommonButton>
+            <CommonButton onClick={handleSave} color="primary" disabled={isSavingUser}>{translation.global.save}</CommonButton>
           </div>
         )}
         maxWidth="xs"

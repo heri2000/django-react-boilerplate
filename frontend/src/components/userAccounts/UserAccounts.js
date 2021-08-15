@@ -12,6 +12,7 @@ import {
   getUsers,
   addUser,
   updateUser,
+  updateUserBulk,
   setButtonAndDataVisibility,
   setEditNewUser,
   setEditExistingUser,
@@ -99,7 +100,7 @@ const UserAccounts = (props) => {
     }  else {
       let id = gridSelectionModel[0];
       if (id === 1) {
-        setMessage1(translation.global.editingAdminNotAllowed);
+        setMessage1(translation.userAccounts.editingAdminNotAllowed);
         setShowMessage1(true);
       } else {
         let user = users.find(user => user.id === id);
@@ -161,13 +162,20 @@ const UserAccounts = (props) => {
   }
 
   const handleBulkEditorSave = () => {
-    console.log(bulkEditorField, gridSelectionModel);
+    let data = {
+      ids: gridSelectionModel,
+      field: bulkEditorField.name,
+      value: bulkEditorField.value,
+    };
+    props.updateUserBulk(data);
   }
 
   return(
     <AppContainer title={translation.userAccounts.moduleTitle}>
       <div className="PageContent">
+
         <UserFilter handleShowClick={handleShowClick} />
+
         <div className="ButtonPanel" style={{visibility: buttonAndDataVisibility}}>
           <CommonButton onClick={handleNewUserClick}>{translation.userAccounts.newUser}</CommonButton>
           <CommonButton
@@ -205,6 +213,7 @@ const UserAccounts = (props) => {
             </MenuItem>
           </Menu>
         </div>
+
         <div className="DataPanel" style={{visibility: buttonAndDataVisibility}}>
           <CommonDataGrid
             columns={columns}
@@ -230,6 +239,7 @@ const UserAccounts = (props) => {
             field={bulkEditorField}
             onChange={handleBulkEditorChange}
             onClose={handleCloseBulkEditor}
+            isSavingUser={isSavingUser}
             handleSave={handleBulkEditorSave}
           />
         ) : ""}
@@ -258,5 +268,13 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  getUsers, addUser, updateUser, setButtonAndDataVisibility, setEditNewUser, setEditExistingUser, setBulkEditUser, setSavingUser
+  getUsers,
+  addUser,
+  updateUser,
+  updateUserBulk,
+  setButtonAndDataVisibility,
+  setEditNewUser,
+  setEditExistingUser,
+  setBulkEditUser,
+  setSavingUser
 })(withRouter(UserAccounts));

@@ -2,11 +2,12 @@ import {
   GET_USERS,
   ADD_USER,
   UPDATE_USER,
+  UPDATE_USER_BULK,
   DELETE_USER,
   SET_BUTTON_AND_DATA_VISIBILITY,
   SET_EDIT_NEW_USER,
   SET_EDIT_EXISTING_USER,
-  SET_BULK_EDIT_USER,
+  SET_EDIT_USER_BULK,
   SET_SAVING_USER
 } from "./UserTypes";
 
@@ -37,7 +38,7 @@ export const userReducer = (state = initialState, action) => {
         users: state.users.filter((item, index) => item.id !== action.payload)
       };
     case UPDATE_USER:
-      const updatedUsers = state.users.map(item => {
+      const updatedUsers1 = state.users.map(item => {
         if (item.id === action.payload.id) {
           return { ...item, ...action.payload };
         }
@@ -45,7 +46,20 @@ export const userReducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        users: updatedUsers
+        users: updatedUsers1
+      };
+    case UPDATE_USER_BULK:
+      const updatedUsers2 = state.users.map(item => {
+        action.payload.forEach((newItem) => {
+          if (item.id === newItem.id) {
+            item = { ...item, ...newItem };
+          }
+        });
+        return item;
+      });
+      return {
+        ...state,
+        users: updatedUsers2
       };
     case SET_BUTTON_AND_DATA_VISIBILITY:
       return {
@@ -62,7 +76,7 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         editExistingUser: action.payload
       }
-    case SET_BULK_EDIT_USER:
+    case SET_EDIT_USER_BULK:
       return {
         ...state,
         bulkEditUser: action.payload

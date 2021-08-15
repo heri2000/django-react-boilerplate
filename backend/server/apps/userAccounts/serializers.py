@@ -28,7 +28,8 @@ class CustomTokenCreateSerializer(TokenCreateSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "first_name", "last_name", "password", "email", "is_staff", "is_superuser", "is_active", "date_joined", "last_login"]
+        # fields = ["id", "username", "first_name", "last_name", "password", "email", "is_staff", "is_superuser", "is_active", "date_joined", "last_login"]
+        fields = '__all__'
 
 class UserSerializerNoPassword(serializers.ModelSerializer):
     class Meta:

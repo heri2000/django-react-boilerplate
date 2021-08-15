@@ -4,11 +4,12 @@ import {
   GET_USERS,
   ADD_USER,
   UPDATE_USER,
+  UPDATE_USER_BULK,
   DELETE_USER,
   SET_BUTTON_AND_DATA_VISIBILITY,
   SET_EDIT_NEW_USER,
   SET_EDIT_EXISTING_USER,
-  SET_BULK_EDIT_USER,
+  SET_EDIT_USER_BULK,
   SET_SAVING_USER
 } from "./UserTypes";
 
@@ -75,6 +76,10 @@ export const deleteUser = id => dispatch => {
 };
 
 export const updateUser = (id, user) => dispatch => {
+  dispatch({
+    type: SET_SAVING_USER,
+    payload: true
+  });
   axios
     .patch(`/api/v1/userlist/${id}/`, user)
     .then(response => {
@@ -101,6 +106,37 @@ export const updateUser = (id, user) => dispatch => {
 };
 
 
+export const updateUserBulk = (data) => dispatch => {
+  dispatch({
+    type: SET_SAVING_USER,
+    payload: true
+  });
+  axios
+    .put(`/api/v1/userbulkedit/`, data)
+    .then(response => {
+      dispatch({
+        type: UPDATE_USER_BULK,
+        payload: response.data
+      });
+      dispatch({
+        type: SET_SAVING_USER,
+        payload: false
+      });
+      dispatch({
+        type: SET_EDIT_USER_BULK,
+        payload: false
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: SET_SAVING_USER,
+        payload: false
+      });
+      toastOnError(error);
+    });
+}
+
+
 export const setButtonAndDataVisibility = (visibility) => dispatch => {
   dispatch({
     type: SET_BUTTON_AND_DATA_VISIBILITY,
@@ -124,7 +160,7 @@ export const setEditExistingUser = (editExistingUser) => dispatch => {
 
 export const setBulkEditUser = (bulkEditUser) => dispatch => {
   dispatch({
-    type: SET_BULK_EDIT_USER,
+    type: SET_EDIT_USER_BULK,
     payload: bulkEditUser
   });
 }

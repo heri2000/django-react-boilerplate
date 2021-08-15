@@ -13,6 +13,7 @@ router.register(r'^api/v1/userlist', views.UserViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('api/v1/userbulkedit/', views.UserAPI.as_view()),
 ]
 
 userAccounts_urlpatterns += urlpatterns
