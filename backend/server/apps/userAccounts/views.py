@@ -1,5 +1,5 @@
 from django.core.exceptions import ValidationError
-from django.db.models.query import QuerySet
+from django.db.models import Q
 # from django.shortcuts import render
 from rest_framework import serializers, status
 from django.contrib.auth.hashers import make_password
@@ -21,7 +21,7 @@ class UserViewSet(viewsets.ModelViewSet):
     
     def list(self, request):
         filter = request.GET['f']
-        queryset = self.queryset.filter(username__icontains=filter).order_by('username')
+        queryset = self.queryset.filter(Q(username__icontains=filter) | Q(email__icontains=filter) | Q(first_name__icontains=filter) | Q(last_name__icontains=filter)).order_by('username')
         serializer = UserSerializerNoPassword(queryset, many=True)
         return Response(serializer.data)
     
