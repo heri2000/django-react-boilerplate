@@ -147,18 +147,24 @@ const UserAccounts = (props) => {
   }
 
   const handleShowBulkEditor = (fieldName) => {
-    let type = "";
-    let value = "";
-    if (fieldName === "first_name" || fieldName === "last_name") {
-      type = "textfield";
-      value = "";
-    } else if (fieldName === "is_staff" || fieldName === "is_superuser" || fieldName === "is_active") {
-      type = "switch";
-      value = false;
+    if (gridSelectionModel.length === 0) {
+      setMessage1(translation.global.pleaseSelectAtLeastOneRowToEdit);
+      handleWithSelectedClose();
+      setShowMessage1(true);
+    } else {
+      let type = "";
+      let value = "";
+      if (fieldName === "first_name" || fieldName === "last_name") {
+        type = "textfield";
+        value = "";
+      } else if (fieldName === "is_staff" || fieldName === "is_superuser" || fieldName === "is_active") {
+        type = "switch";
+        value = false;
+      }
+      setBulkEditorField({name: fieldName, type: type, value: value});
+      handleWithSelectedClose();
+      props.setBulkEditUser(true);
     }
-    setBulkEditorField({name: fieldName, type: type, value: value});
-    handleWithSelectedClose();
-    props.setBulkEditUser(true);
   }
 
   const handleBulkEditorChange = (event) => {
