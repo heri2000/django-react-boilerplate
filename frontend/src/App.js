@@ -45,7 +45,7 @@ class App extends React.Component {
           <Route path="/:lang/login" component={Login} />
           <Route path="/:lang/signup" component={Signup} />
           <Route path="/:lang/mainmenu" component={requireAuth(MainMenu)} />
-          <Route path="/:lang/user" component={requireAuth(User)} />
+          <Route path="/:lang/useraccounts" component={requireAuth(User)} />
           <Route path="/:lang/notes" component={requireAuth(Notes)} />
           <Route path="*" component={NoMatchPage} />
         </Switch>

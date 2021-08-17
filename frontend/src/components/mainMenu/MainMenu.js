@@ -18,7 +18,7 @@ export default class MainMenu extends React.Component {
     const lang = H_GetLangFromUrl();
 
     const linkToNotes = "/" + lang + "/notes";
-    const linkToUser = "/" + lang + "/user";
+    const linkToUser = "/" + lang + "/useraccounts";
     
     return (
       <AppContainer title={translation.mainMenu.moduleTitle}>
