@@ -5,6 +5,7 @@ import {
   UPDATE_USER_BULK,
   DELETE_USER,
   SET_BUTTON_AND_DATA_VISIBILITY,
+  SET_LOADING_DATA,
   SET_EDIT_NEW_USER,
   SET_EDIT_EXISTING_USER,
   SET_EDIT_USER_BULK,
@@ -13,6 +14,7 @@ import {
 
 const initialState = {
   buttonAndDataVisibility: "hidden",
+  isLoadingData: false,
   editNewUser: false,
   editExistingUser: false,
   bulkEditUser: false,
@@ -65,6 +67,11 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         buttonAndDataVisibility: action.payload
+      };
+    case SET_LOADING_DATA:
+      return {
+        ...state,
+        isLoadingData: action.payload
       };
     case SET_EDIT_NEW_USER:
       return {

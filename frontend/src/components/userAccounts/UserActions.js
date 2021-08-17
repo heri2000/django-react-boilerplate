@@ -7,13 +7,18 @@ import {
   UPDATE_USER_BULK,
   DELETE_USER,
   SET_BUTTON_AND_DATA_VISIBILITY,
+  SET_LOADING_DATA,
   SET_EDIT_NEW_USER,
   SET_EDIT_EXISTING_USER,
   SET_EDIT_USER_BULK,
-  SET_SAVING_USER
+  SET_SAVING_USER,
 } from "./UserTypes";
 
 export const getUsers = (filter) => dispatch => {
+  dispatch({
+    type: SET_LOADING_DATA,
+    payload: true
+  });
   axios
     .get("/api/v1/userlist/", {params: {f: filter}})
     .then(response => {
@@ -25,8 +30,16 @@ export const getUsers = (filter) => dispatch => {
         type: GET_USERS,
         payload: response.data
       });
+      dispatch({
+        type: SET_LOADING_DATA,
+        payload: false
+      });
     })
     .catch(error => {
+      dispatch({
+        type: SET_LOADING_DATA,
+        payload: false
+      });
       toastOnError(error);
     });
 };

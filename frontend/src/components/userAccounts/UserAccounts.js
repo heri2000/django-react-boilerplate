@@ -49,6 +49,7 @@ const UserAccounts = (props) => {
   ];
   
   const { buttonAndDataVisibility } = props.users;
+  const { isLoadingData } = props.users;
   const { editNewUser } = props.users;
   const { editExistingUser } = props.users;
   const { bulkEditUser } = props.users;
@@ -65,6 +66,7 @@ const UserAccounts = (props) => {
     is_active: true
   };
 
+  const [currentFilter, setCurrentFilter] = useState("");
   const [showMessage1, setShowMessage1] = useState(false);
   const [message1, setMessage1] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
@@ -73,6 +75,7 @@ const UserAccounts = (props) => {
   const [user, setUser] = useState(defaultUser);
 
   const handleShowClick = (filter) => {
+    setCurrentFilter(filter);
     props.getUsers(filter);
   }
 
@@ -142,10 +145,6 @@ const UserAccounts = (props) => {
     setShowMessage1(false);
   }
 
-  const handleSelectionModelChange = (model) => {
-    setGridSelectionModel(model);
-  }
-
   const handleShowBulkEditor = (fieldName) => {
     if (gridSelectionModel.length === 0) {
       setMessage1(translation.global.pleaseSelectAtLeastOneRowToEdit);
@@ -200,6 +199,7 @@ const UserAccounts = (props) => {
           >
             {translation.global.withSelected}
           </CommonButton>
+          <CommonButton onClick={()=>{console.log(gridSelectionModel)}}>Test</CommonButton>
           <Menu
             id="withSelectedMenu"
             anchorEl={anchorEl}
@@ -229,12 +229,19 @@ const UserAccounts = (props) => {
           </Menu>
         </div>
 
+        <div className="FilterTextPanel" style={{visibility: buttonAndDataVisibility}}>
+          {translation.userAccounts.filterUserNameEmailFirstNameLastName +
+          " " + translation.global.contains +
+          " '" + currentFilter + "'"}
+        </div>
+
         <div className="DataPanel" style={{visibility: buttonAndDataVisibility}}>
           <CommonDataGrid
             columns={columns}
             rows={users}
+            loading={isLoadingData}
             selectionModel={gridSelectionModel}
-            onSelectionModelChange={handleSelectionModelChange}
+            onSelectionModelChange={setGridSelectionModel}
           />
         </div>
 

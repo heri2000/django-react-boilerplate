@@ -11,7 +11,8 @@
     "withSelected": "With selected ...",
     "pleaseSelectOneRowToEdit": "Please select one row to edit.",
     "pleaseSelectAtLeastOneRowToEdit": "Please select at least one row to edit.",
-    "cannotEditMoreThanOneRow": "Cannot edit more than one row. Please select only one row."
+    "cannotEditMoreThanOneRow": "Cannot edit more than one row. Please select only one row.",
+    "contains": "contains"
   },
   "login": {
     "moduleTitle": "Login",

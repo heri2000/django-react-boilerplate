@@ -11,7 +11,8 @@
     "withSelected": "Dengan yang dipilih ...",
     "pleaseSelectOneRowToEdit": "Mohon pilih satu baris untuk diubah.",
     "pleaseSelectAtLeastOneRowToEdit": "Mohon pilih paling sedikit satu baris untuk diubah.",
-    "cannotEditMoreThanOneRow": "Tidak dapat mengubah lebih dari satu baris. Mohon pilih satu baris saja."
+    "cannotEditMoreThanOneRow": "Tidak dapat mengubah lebih dari satu baris. Mohon pilih satu baris saja.",
+    "contains": "mengandung"
   },
   "login": {
     "moduleTitle": "Login",
