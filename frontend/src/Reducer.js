@@ -6,6 +6,7 @@ import { loginReducer } from "./components/login/LoginReducer";
 import { notesReducer } from "./components/notes/NotesReducer";
 import { userReducer } from "./components/userAccounts/UserReducer";
 
+// const rootReducer = history =>
 const createRootReducer = history =>
   combineReducers({
     router: connectRouter(history),
@@ -15,4 +16,5 @@ const createRootReducer = history =>
     users: userReducer,
   });
 
+// export default rootReducer;
 export default createRootReducer;
