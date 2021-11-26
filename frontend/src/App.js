@@ -33,6 +33,8 @@ class App extends React.Component {
     const lang = H_GetLangFromUrl();
     const defaultRedirect = "/" + lang + "/login";
     return(
+      // <React.Fragment>
+      // <>
       <Root>
         <ToastContainer hideProgressBar={true} newestOnTop={true} />
         <Switch>
@@ -50,6 +52,8 @@ class App extends React.Component {
           <Route path="*" component={NoMatchPage} />
         </Switch>
       </Root>
+      // </>
+      // </React.Fragment>
     );
   }
 }
